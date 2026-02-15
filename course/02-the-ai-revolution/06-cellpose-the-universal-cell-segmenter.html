@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06 - Cellpose - The Universal Cell Segmenter</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>06 - Cellpose — The Universal Cell Segmenter</h1>
+<p><a href="../../search.html?tag=segmentation" class="tag">#segmentation</a> <a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=cellpose" class="tag">#cellpose</a> <a href="../../search.html?tag=cells" class="tag">#cells</a></p>
+<hr />
+<h2>Overview</h2>
+<p>While StarDist excels at round objects (nuclei), Cellpose is a <strong>generalist segmentation algorithm</strong> that handles virtually any cell shape — including irregular cytoplasms, bacteria, organoids, and other complex morphologies.</p>
+<p>🔗 <strong>Paper:</strong> Stringer et al., "Cellpose: a generalist algorithm for cellular segmentation" (Nature Methods, 2021)<br />
+🔗 <strong>GitHub:</strong> <a href="https://github.com/MouseLand/cellpose">https://github.com/MouseLand/cellpose</a><br />
+🔗 <strong>Documentation:</strong> <a href="https://cellpose.readthedocs.io">https://cellpose.readthedocs.io</a></p>
+<hr />
+<h2>Before &amp; After</h2>
+<h3>The Old Way (Cytoplasm Segmentation)</h3>
+<pre><code>Open image → Try various thresholds → Fail → 
+Manual ROI drawing for each cell → Hours per image →
+Give up on batch processing
+</code></pre>
+<p><strong>Result:</strong> Manual ROI drawing. Not scalable. Not reproducible.</p>
+<h3>The New Way (Cellpose)</h3>
+<pre><code>Open image → Run Cellpose with model_type=cyto3 →
+Set estimated cell diameter → Run
+</code></pre>
+<p><strong>Result:</strong> Accurate cell outlines including irregular shapes. Seconds per image. Fully automated.</p>
+<hr />
+<h2>Pre-Trained Models</h2>
+<p>Cellpose ships with several generalist models:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Best For</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>cyto3</strong></td>
+<td>Cell cytoplasm (latest, most accurate)</td>
+<td>Recommended default for cells</td>
+</tr>
+<tr>
+<td><strong>cyto2</strong></td>
+<td>Cell cytoplasm (previous gen)</td>
+<td>Still excellent, widely validated</td>
+</tr>
+<tr>
+<td><strong>cyto</strong></td>
+<td>Cell cytoplasm (original)</td>
+<td>Legacy, use cyto3 instead</td>
+</tr>
+<tr>
+<td><strong>nuclei</strong></td>
+<td>Nuclear segmentation</td>
+<td>Alternative to StarDist for nuclei</td>
+</tr>
+<tr>
+<td><strong>tissuenet_cp3</strong></td>
+<td>Tissue images</td>
+<td>Trained on TissueNet dataset</td>
+</tr>
+<tr>
+<td><strong>livecell_cp3</strong></td>
+<td>Live cell imaging</td>
+<td>Phase contrast, DIC</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<div class="admonition-title">Use `cyto3` as your default</div>
+<div class="admonition-content">
+Cellpose 3 models are trained on a much larger and more diverse dataset than previous versions.
+</div></div>
+
+<hr />
+<h2>Using Cellpose</h2>
+<h3>Option A: Cellpose GUI (Standalone)</h3>
+<p>Cellpose comes with its own graphical interface:</p>
+<pre><code class="language-bash"># Launch the GUI
+python -m cellpose
+</code></pre>
+<p>The GUI lets you:<br />
+- Load images<br />
+- Select models<br />
+- Adjust cell diameter<br />
+- View results in real-time<br />
+- Save masks and outlines<br />
+- Train custom models interactively</p>
+<h3>Option B: Cellpose from Python</h3>
+<pre><code class="language-python">from cellpose import models
+import numpy as np
+from skimage import io
+
+# Load image
+img = io.imread('my_cells.tif')
+
+# Initialize model
+model = models.Cellpose(model_type='cyto3', gpu=True)
+
+# Run segmentation
+masks, flows, styles, diams = model.eval(
+    img,
+    diameter=30,          # Estimated cell diameter in pixels
+    channels=[0, 0],      # [cytoplasm_channel, nucleus_channel]
+    flow_threshold=0.4,   # Flow error threshold
+    cellprob_threshold=0  # Cell probability threshold
+)
+
+# masks is a numpy array where each cell has a unique integer label
+print(f&quot;Detected {masks.max()} cells&quot;)
+
+# Save results
+io.imsave('masks.tif', masks.astype(np.uint16))
+</code></pre>
+<h3>Option C: Cellpose in Fiji (via wrapper)</h3>
+<p>The BIOP Cellpose wrapper lets you run Cellpose from within Fiji:</p>
+<p>🔗 <strong>BIOP Cellpose Wrapper:</strong> <a href="https://github.com/BIOP/ijl-utilities-wrappers">https://github.com/BIOP/ijl-utilities-wrappers</a></p>
+<p>After installation:<br />
+1. <strong>Plugins → BIOP → Cellpose Advanced</strong><br />
+2. Set your parameters<br />
+3. Results appear as ROIs in Fiji</p>
+<hr />
+<h2>Key Parameters</h2>
+<h3>Cell Diameter</h3>
+<p>The single most important parameter. Estimate the average diameter of your cells in pixels.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Use Fiji's line tool</strong></td>
+<td>Draw a line across a typical cell → read length in status bar</td>
+</tr>
+<tr>
+<td><strong>Let Cellpose estimate</strong></td>
+<td>Set <code>diameter=0</code> and Cellpose will auto-estimate (less reliable)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<div class="admonition-title">Getting diameter right matters</div>
+<div class="admonition-content">
+If diameter is too small: cells are over-segmented (split into pieces)
+If diameter is too large: cells are merged together
+When in doubt, slightly overestimate rather than underestimate.
+</div></div>
+
+<h3>Channels</h3>
+<p>Cellpose needs to know which channel contains what:</p>
+<pre><code class="language-python"># Grayscale image
+channels = [0, 0]
+
+# Cytoplasm in channel 1, nuclei in channel 2
+channels = [1, 2]
+
+# Cytoplasm only (channel 2, no nuclear channel)
+channels = [2, 0]
+
+# Nuclei only (using the nuclei model)
+channels = [0, 0]  # with model_type='nuclei'
+</code></pre>
+<h3>Flow and Probability Thresholds</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flow_threshold</code></td>
+<td>0.4</td>
+<td>Higher → fewer cells (stricter quality filter)</td>
+</tr>
+<tr>
+<td><code>cellprob_threshold</code></td>
+<td>0</td>
+<td>Higher → only high-confidence cells detected</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Cellpose 3.0: What's New</h2>
+<p>Cellpose 3.0 (2024) introduced significant improvements:</p>
+<ol>
+<li><strong>Image restoration built-in:</strong> Cellpose can now denoise and sharpen images before segmentation — combining what CARE does with segmentation in one step</li>
+<li><strong>Improved 3D segmentation:</strong> Native 3D support without slice-by-slice processing</li>
+<li><strong>Larger training set:</strong> Trained on millions more cells</li>
+<li><strong>Better generalization:</strong> Works across more imaging modalities out of the box</li>
+</ol>
+<pre><code class="language-python"># Cellpose 3 with built-in denoising
+from cellpose import denoise
+
+# Create denoising model
+dn_model = denoise.CellposeDenoiseModel(
+    model_type='cyto3',
+    restore_type='denoise_cyto3'
+)
+
+# Segment with denoising
+masks, flows, styles, diams = dn_model.eval(
+    img,
+    diameter=30,
+    channels=[0, 0]
+)
+</code></pre>
+<hr />
+<h2>Training Custom Cellpose Models</h2>
+<p>When pre-trained models don't work perfectly on your specific data:</p>
+<h3>Using the GUI</h3>
+<ol>
+<li>Open images in Cellpose GUI</li>
+<li>Run a pre-trained model</li>
+<li>Manually correct the masks (add, delete, edit cells)</li>
+<li>Save corrected masks as training data</li>
+<li>Click <strong>Train</strong> → select your corrected images → train</li>
+</ol>
+<h3>Using Python</h3>
+<pre><code class="language-python">from cellpose import models, io
+
+# Prepare training data
+train_images = [io.imread(f) for f in image_files]
+train_masks = [io.imread(f) for f in mask_files]
+
+# Train
+model = models.CellposeModel(model_type='cyto3')
+model.train(
+    train_images,
+    train_masks,
+    channels=[0, 0],
+    n_epochs=100,
+    learning_rate=0.01
+)
+model.save('my_custom_model')
+</code></pre>
+<h3>Using ZeroCostDL4Mic</h3>
+<p>🔗 The Cellpose notebook on Google Colab handles training without local GPU:<br />
+<a href="https://github.com/HenriquesLab/ZeroCostDL4Mic">https://github.com/HenriquesLab/ZeroCostDL4Mic</a></p>
+<hr />
+<h2>Cellpose vs. StarDist: When to Use Which</h2>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>StarDist</th>
+<th>Cellpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object shape</td>
+<td>Round / star-convex</td>
+<td>Any shape</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Faster</td>
+<td>Slower (Python overhead)</td>
+</tr>
+<tr>
+<td>Fiji integration</td>
+<td>Native plugin</td>
+<td>Requires Python backend</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Nuclei in fluorescence/H&amp;E</td>
+<td>Cytoplasm, bacteria, irregular shapes</td>
+</tr>
+<tr>
+<td>3D support</td>
+<td>Yes</td>
+<td>Yes (improved in v3)</td>
+</tr>
+<tr>
+<td>Denoising built-in</td>
+<td>No</td>
+<td>Yes (v3)</td>
+</tr>
+<tr>
+<td>Ease of training</td>
+<td>Moderate</td>
+<td>Easy (GUI-based)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<div class="admonition-title">Use both</div>
+<div class="admonition-content">
+In many workflows, you'll use StarDist for nuclear segmentation and Cellpose for cytoplasm segmentation, then combine the results.
+</div></div>
+
+<hr />
+<p><strong>Hands-on:</strong> <a href="../04-hands-on-labs/lab-02-cellpose-cell-segmentation.html" class="internal-link">Lab 02 - Cellpose Cell Segmentation</a><br />
+<strong>Next:</strong> <a href="07-care-and-csbdeep-ai-image-restoration.html" class="internal-link">07 - CARE and CSBDeep - AI Image Restoration</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

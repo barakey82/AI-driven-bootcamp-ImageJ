@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14 - Micro-SAM - Segment Anything for Microscopy</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>14 - Micro-SAM — Segment Anything for Microscopy</h1>
+<p><a href="../../search.html?tag=segmentation" class="tag">#segmentation</a> <a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=sam" class="tag">#sam</a> <a href="../../search.html?tag=advanced" class="tag">#advanced</a></p>
+<hr />
+<h2>Overview</h2>
+<p>Micro-SAM adapts Meta's Segment Anything Model (SAM) specifically for microscopy. SAM can segment any object in an image with minimal user input — just click on it or draw a bounding box. Micro-SAM fine-tunes this capability for biological images.</p>
+<p>🔗 <strong>GitHub:</strong> <a href="https://github.com/computational-cell-analytics/micro-sam">https://github.com/computational-cell-analytics/micro-sam</a><br />
+🔗 <strong>Paper:</strong> Archit et al., "Segment Anything for Microscopy" (Nature Methods, 2024)</p>
+<hr />
+<h2>What Makes SAM Special</h2>
+<p>Traditional AI segmentation: Train a specific model for a specific task.<br />
+SAM: One model that can segment almost anything, guided by simple prompts.</p>
+<p><strong>Prompt types:</strong><br />
+- <strong>Point:</strong> Click on an object → SAM segments it<br />
+- <strong>Box:</strong> Draw a bounding box → SAM segments everything inside<br />
+- <strong>Automatic:</strong> SAM finds and segments all objects without prompts</p>
+<hr />
+<h2>Installation</h2>
+<pre><code class="language-bash">pip install micro_sam
+</code></pre>
+<h2>Using Micro-SAM with napari</h2>
+<pre><code class="language-bash"># Launch the napari-based GUI
+micro_sam.sam_annotator
+</code></pre>
+<h3>Interactive Segmentation</h3>
+<ol>
+<li>Load your microscopy image</li>
+<li>Click on a cell → Micro-SAM segments it</li>
+<li>Click on more cells to add to your selection</li>
+<li>Accept or refine the segmentation</li>
+<li>Export masks</li>
+</ol>
+<h3>Automatic Segmentation</h3>
+<pre><code class="language-python">from micro_sam.automatic_segmentation import automatic_instance_segmentation
+
+masks = automatic_instance_segmentation(
+    image,
+    model_type=&quot;vit_b_lm&quot;,  # Micro-SAM model fine-tuned for light microscopy
+)
+</code></pre>
+<hr />
+<h2>Available Micro-SAM Models</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Trained On</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vit_b_lm</code></td>
+<td>Light microscopy</td>
+<td>Fluorescence, phase contrast, DIC</td>
+</tr>
+<tr>
+<td><code>vit_b_em_organelles</code></td>
+<td>Electron microscopy</td>
+<td>Organelle segmentation in EM</td>
+</tr>
+<tr>
+<td><code>vit_b_em_boundaries</code></td>
+<td>Electron microscopy</td>
+<td>Membrane/boundary detection</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>When to Use Micro-SAM vs. StarDist/Cellpose</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Best Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch processing thousands of images</td>
+<td>StarDist / Cellpose (fully automatic)</td>
+</tr>
+<tr>
+<td>Interactive annotation / correction</td>
+<td>Micro-SAM (click-to-segment)</td>
+</tr>
+<tr>
+<td>Novel object types with no existing model</td>
+<td>Micro-SAM (zero-shot segmentation)</td>
+</tr>
+<tr>
+<td>Creating training data for other models</td>
+<td>Micro-SAM (fast annotation)</td>
+</tr>
+</tbody>
+</table>
+<p>Micro-SAM is especially powerful as an <strong>annotation tool</strong> — use it to quickly create training data, then train a specialized model (StarDist, Cellpose) for batch processing.</p>
+<hr />
+<p><strong>See also:</strong> <a href="13-zerocostdl4mic-train-models-for-free.html" class="internal-link">13 - ZeroCostDL4Mic - Train Models for Free</a> for training custom models using annotations from Micro-SAM</p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

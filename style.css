@@ -1,0 +1,408 @@
+/* BIU Design System - 2024 Implementation */
+:root {
+    /* Primary Identity */
+    --biu-green-900: #004D36;
+    /* Darker variant */
+    --biu-green-700: #006747;
+    /* MAIN BRAND COLOR */
+    --biu-green-500: #008C5E;
+    /* Hover / Lighter */
+
+    /* Secondary / Accents */
+    --biu-gold-metallic: #C69C6D;
+    --biu-gold-digital: #F0AB00;
+
+    /* Neutrals */
+    --biu-text-main: #1C1C28;
+    /* Dark Navy */
+    --biu-text-muted: #6E6E73;
+    --biu-bg-light: #F5F5F7;
+    /* Light Gray Background */
+    --biu-white: #FFFFFF;
+
+    /* Akadima Sub-brand */
+    --akadima-green: #34C759;
+    --akadima-brown: #8B572A;
+    --akadima-gradient: linear-gradient(135deg, var(--akadima-green) 0%, var(--akadima-brown) 100%);
+
+    /* Functional */
+    --biu-success: #34C759;
+    --biu-error: #FF3B30;
+    --biu-warning: #FFCC00;
+
+    /* Mappings to generic names for fallback compatibility */
+    --bg-color: var(--biu-bg-light);
+    --text-color: var(--biu-text-main);
+    --sidebar-bg: var(--biu-green-700);
+    --sidebar-text: var(--biu-white);
+    --link-color: var(--biu-green-700);
+    --link-hover: var(--akadima-green);
+    --accent-color: var(--biu-gold-digital);
+    --border-color: #d1d1d6;
+    --code-bg: #e5e5e7;
+    --card-bg: var(--biu-white);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    /* BIU Deep Green */
+    color: var(--sidebar-text);
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    color: var(--biu-gold-metallic);
+    /* Brand Gold */
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--biu-gold-metallic);
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.sidebar a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.2s;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.sidebar a:hover {
+    background-color: var(--biu-green-500);
+    /* Bright Green Hover */
+    color: white;
+    transform: translateX(3px);
+}
+
+.sidebar .folder-name {
+    font-weight: 600;
+    color: var(--biu-gold-digital);
+    /* Digital Gold for folders */
+    margin-top: 15px;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.sidebar .folder ul {
+    margin-left: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 10px;
+}
+
+/* Main Content */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.content {
+    margin-left: 280px;
+    padding: 40px 60px;
+    flex: 1;
+    max-width: 900px;
+    background-color: var(--biu-white);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.03);
+    min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--biu-green-900);
+    /* Darkest Green for headers */
+    margin-top: 1.5em;
+}
+
+h1 {
+    font-size: 2.5rem;
+    border-bottom: 4px solid var(--biu-green-700);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+a.internal-link {
+    color: var(--biu-green-700);
+    background-color: rgba(0, 103, 71, 0.05);
+    /* Very light green tint */
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+a.internal-link:hover {
+    background-color: var(--biu-green-700);
+    color: white;
+    text-decoration: none;
+}
+
+code {
+    background-color: var(--code-bg);
+    color: var(--biu-text-main);
+    /* Dark navy for code */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    border: 1px solid #d1d1d6;
+}
+
+pre {
+    background-color: #2d2d2d;
+    /* Keep code blocks dark for contrast */
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    border-left: 4px solid var(--biu-green-700);
+}
+
+pre code {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    padding: 0;
+}
+
+blockquote {
+    border-left: 4px solid var(--biu-gold-metallic);
+    background-color: #F9F7F4;
+    /* Very light warm gray */
+    margin: 1.5em 0;
+    padding: 1em 1.5em;
+    color: var(--biu-text-muted);
+}
+
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tables - BIU Style */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+table thead tr {
+    background-color: var(--biu-green-700);
+    color: var(--biu-white);
+    text-align: left;
+    font-weight: bold;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f8fcfb;
+    /* Very light hint of green */
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--biu-green-700);
+}
+
+table tbody tr:hover {
+    background-color: rgba(0, 103, 71, 0.05);
+}
+
+
+/* Admonitions */
+.admonition {
+    margin: 1.5em 0;
+    border-radius: 8px;
+    border-left: 5px solid;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.admonition-title {
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.admonition-content {
+    padding: 15px;
+}
+
+.admonition.note {
+    border-color: var(--biu-green-700);
+}
+
+.admonition.note .admonition-title {
+    background-color: rgba(0, 103, 71, 0.1);
+    color: var(--biu-green-900);
+}
+
+.admonition.tip {
+    border-color: var(--biu-gold-digital);
+}
+
+.admonition.tip .admonition-title {
+    background-color: rgba(240, 171, 0, 0.1);
+    color: #B38600;
+}
+
+.admonition.warning {
+    border-color: var(--biu-error);
+}
+
+.admonition.warning .admonition-title {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: #c02b22;
+}
+
+/* Tags */
+.tag {
+    display: inline-block;
+    background: var(--biu-bg-light);
+    color: var(--biu-green-700);
+    padding: 2px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    border: 1px solid var(--biu-green-700);
+    margin-right: 5px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.tag:hover {
+    background: var(--biu-green-700);
+    color: white;
+    text-decoration: none;
+}
+
+/* Checklists */
+.task-list-item {
+    list-style-type: none;
+    margin-left: -20px;
+}
+
+.task-list-item input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--biu-gold-digital);
+    /* Gold checkboxes */
+}
+
+.task-list-item label {
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.task-list-item input[type="checkbox"]:checked+label {
+    text-decoration: line-through;
+    color: var(--biu-text-muted);
+}
+
+/* Search */
+#search-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+#search-input:focus {
+    border-color: var(--biu-green-700);
+    outline: none;
+}
+
+/* Akadima Gradient accents */
+.akadima-bar {
+    height: 4px;
+    width: 100%;
+    background: var(--akadima-gradient);
+    border-radius: 2px;
+    margin: 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        border-right: none;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+}

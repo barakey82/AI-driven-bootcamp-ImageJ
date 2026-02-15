@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 01 - StarDist Nuclei Counting</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Lab 01 — StarDist Nuclei Counting</h1>
+<p><a href="../../search.html?tag=lab" class="tag">#lab</a> <a href="../../search.html?tag=stardist" class="tag">#stardist</a> <a href="../../search.html?tag=segmentation" class="tag">#segmentation</a> <a href="../../search.html?tag=hands-on" class="tag">#hands-on</a></p>
+<hr />
+<h2>Objective</h2>
+<p>Count nuclei in a fluorescence microscopy image using both the classical method and StarDist, and compare the results.</p>
+<p><strong>Time:</strong> ~30 minutes<br />
+<strong>Prerequisites:</strong> Fiji with StarDist plugin installed (see <a href="../02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html" class="internal-link">04 - The New Fiji - Update Sites and AI Plugins</a>)</p>
+<hr />
+<h2>Part A: Classical Method (The Old Way)</h2>
+<h3>Step 1: Open Sample Image</h3>
+<p>Use Fiji's built-in sample or your own nuclear-stained image:</p>
+<pre><code>File → Open Samples → Blobs (25K)
+</code></pre>
+<p>Or for something more realistic, use the StarDist sample:</p>
+<pre><code>File → Open Samples → (any fluorescent nuclei image you have)
+</code></pre>
+<h3>Step 2: Classical Pipeline</h3>
+<pre><code class="language-javascript">// ============================
+// LAB 01A: Classical Nuclei Counting
+// ============================
+
+// Duplicate to preserve original
+run(&quot;Duplicate...&quot;, &quot;title=classical_method&quot;);
+
+// Pre-processing
+run(&quot;8-bit&quot;);
+run(&quot;Subtract Background...&quot;, &quot;rolling=50&quot;);
+run(&quot;Gaussian Blur...&quot;, &quot;sigma=2&quot;);
+
+// Segmentation
+setAutoThreshold(&quot;Otsu dark&quot;);
+run(&quot;Convert to Mask&quot;);
+
+// Post-processing
+run(&quot;Fill Holes&quot;);
+run(&quot;Watershed&quot;);
+
+// Count
+run(&quot;Set Measurements...&quot;, &quot;area mean perimeter shape redirect=None decimal=3&quot;);
+run(&quot;Analyze Particles...&quot;, &quot;size=50-5000 circularity=0.5-1.00 show=Outlines display clear summarize add&quot;);
+
+// Record result
+classical_count = nResults;
+print(&quot;Classical method detected: &quot; + classical_count + &quot; nuclei&quot;);
+</code></pre>
+<h3>Step 3: Examine the Results</h3>
+<p>Look at the overlay/outlines image:<br />
+- How many nuclei were correctly detected?<br />
+- Can you spot merged nuclei (under-segmentation)?<br />
+- Can you spot split nuclei (over-segmentation by watershed)?<br />
+- Are there false detections from debris?</p>
+<p><strong>Write down your count and note any errors.</strong></p>
+<hr />
+<h2>Part B: StarDist Method (The New Way)</h2>
+<h3>Step 1: Reopen Original Image</h3>
+<p>Close all windows and reopen your original image (or re-open the sample).</p>
+<h3>Step 2: Run StarDist</h3>
+<p><strong>Via GUI:</strong><br />
+1. <strong>Plugins → StarDist → StarDist 2D</strong><br />
+2. Model: <strong>Versatile (fluorescent nuclei)</strong><br />
+3. Leave all parameters at default<br />
+4. Check <strong>"ROI Manager"</strong> <br />
+5. Check <strong>"Label Image"</strong><br />
+6. Click <strong>OK</strong></p>
+<p><strong>Or via macro:</strong></p>
+<pre><code class="language-javascript">// ============================
+// LAB 01B: StarDist Nuclei Counting
+// ============================
+
+run(&quot;Command From Macro&quot;, &quot;command=[de.csbdresden.stardist.StarDist2D], &quot;
+    + &quot;args=['input':'&quot; + getTitle() + &quot;', &quot;
+    + &quot;'modelChoice':'Versatile (fluorescent nuclei)', &quot;
+    + &quot;'normalizeInput':'true', &quot;
+    + &quot;'percentileBottom':'1.0', &quot;
+    + &quot;'percentileTop':'99.8', &quot;
+    + &quot;'probThresh':'0.5', &quot;
+    + &quot;'nmsThresh':'0.3', &quot;
+    + &quot;'outputType':'Both', &quot;
+    + &quot;'nTiles':'1', &quot;
+    + &quot;'excludeBoundary':'2', &quot;
+    + &quot;'roiPosition':'Automatic', &quot;
+    + &quot;'verbose':'false', &quot;
+    + &quot;'showCsbProgress':'true', &quot;
+    + &quot;'showProbAndDist':'false'], &quot;
+    + &quot;process=[false]&quot;);
+
+// Count from ROI Manager
+stardist_count = roiManager(&quot;count&quot;);
+print(&quot;StarDist detected: &quot; + stardist_count + &quot; nuclei&quot;);
+</code></pre>
+<h3>Step 3: Compare Results</h3>
+<p>Examine the StarDist ROIs overlaid on your image:<br />
+- Are touching nuclei properly separated?<br />
+- Are there any missed nuclei?<br />
+- How does the boundary accuracy compare to the classical method?</p>
+<hr />
+<h2>Part C: Quantitative Comparison</h2>
+<h3>Measure Both Results</h3>
+<pre><code class="language-javascript">// Measure StarDist ROIs
+roiManager(&quot;Deselect&quot;);
+run(&quot;Set Measurements...&quot;, &quot;area mean perimeter shape redirect=None decimal=3&quot;);
+roiManager(&quot;Measure&quot;);
+saveAs(&quot;Results&quot;, &quot;/path/to/stardist_results.csv&quot;);
+</code></pre>
+<h3>Compare</h3>
+<p>Fill in this table with your results:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Classical</th>
+<th>StarDist</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total count</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Processing time</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Obvious errors</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Lines of code/steps</td>
+<td>~10</td>
+<td>~3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Part D: Parameter Exploration</h2>
+<p>Try adjusting StarDist parameters and observe the effects:</p>
+<h3>Experiment 1: Probability Threshold</h3>
+<pre><code>probThresh = 0.3  →  More detections (higher sensitivity, more false positives)
+probThresh = 0.5  →  Default balance
+probThresh = 0.7  →  Fewer detections (higher specificity, may miss some)
+</code></pre>
+<h3>Experiment 2: NMS Threshold</h3>
+<pre><code>nmsThresh = 0.1  →  Aggressive overlap suppression (nearby objects more likely to merge)
+nmsThresh = 0.3  →  Default
+nmsThresh = 0.5  →  Tolerant overlap (better for very dense images)
+</code></pre>
+<hr />
+<h2>Takeaways</h2>
+<p>After completing this lab, you should be able to:<br />
+- [x] Run a classical nuclei counting pipeline<br />
+- [x] Run StarDist 2D from both GUI and macro<br />
+- [x] Compare classical vs. AI results quantitatively<br />
+- [x] Tune StarDist parameters for your specific images</p>
+<hr />
+<p><strong>Next Lab:</strong> <a href="lab-02-cellpose-cell-segmentation.html" class="internal-link">Lab 02 - Cellpose Cell Segmentation</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13 - ZeroCostDL4Mic - Train Models for Free</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>13 - ZeroCostDL4Mic — Train Models for Free</h1>
+<p><a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=training" class="tag">#training</a> <a href="../../search.html?tag=zerocost" class="tag">#zerocost</a> <a href="../../search.html?tag=google-colab" class="tag">#google-colab</a></p>
+<hr />
+<h2>Overview</h2>
+<p>ZeroCostDL4Mic provides Google Colab notebooks for training state-of-the-art deep learning models without any local hardware, software installation, or coding expertise. Google gives you free access to a GPU for training.</p>
+<p>🔗 <strong>GitHub:</strong> <a href="https://github.com/HenriquesLab/ZeroCostDL4Mic">https://github.com/HenriquesLab/ZeroCostDL4Mic</a><br />
+🔗 <strong>Paper:</strong> von Chamier et al., "Democratising deep learning for microscopy with ZeroCostDL4Mic" (Nature Communications, 2021)<br />
+🔗 <strong>Wiki:</strong> <a href="https://github.com/HenriquesLab/ZeroCostDL4Mic/wiki">https://github.com/HenriquesLab/ZeroCostDL4Mic/wiki</a></p>
+<hr />
+<h2>Available Notebooks</h2>
+<table>
+<thead>
+<tr>
+<th>Notebook</th>
+<th>Task</th>
+<th>Training Data Needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>StarDist 2D/3D</strong></td>
+<td>Nuclear instance segmentation</td>
+<td>Paired images + label masks</td>
+</tr>
+<tr>
+<td><strong>Cellpose</strong></td>
+<td>Cell instance segmentation</td>
+<td>Paired images + label masks</td>
+</tr>
+<tr>
+<td><strong>CARE</strong></td>
+<td>Denoising (paired)</td>
+<td>Paired noisy/clean images</td>
+</tr>
+<tr>
+<td><strong>Noise2Void</strong></td>
+<td>Denoising (self-supervised)</td>
+<td>Noisy images only</td>
+</tr>
+<tr>
+<td><strong>U-Net</strong></td>
+<td>Semantic segmentation</td>
+<td>Paired images + binary masks</td>
+</tr>
+<tr>
+<td><strong>pix2pix</strong></td>
+<td>Image-to-image translation</td>
+<td>Paired images</td>
+</tr>
+<tr>
+<td><strong>CycleGAN</strong></td>
+<td>Unpaired image translation</td>
+<td>Two sets of unpaired images</td>
+</tr>
+<tr>
+<td><strong>DenoiSeg</strong></td>
+<td>Joint denoising + segmentation</td>
+<td>Noisy images + sparse labels</td>
+</tr>
+<tr>
+<td><strong>EmbedSeg</strong></td>
+<td>Instance segmentation</td>
+<td>Paired images + label masks</td>
+</tr>
+<tr>
+<td><strong>SplineDist</strong></td>
+<td>Segmentation with spline contours</td>
+<td>Paired images + label masks</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>How to Use (General Workflow)</h2>
+<h3>Step 1: Prepare Your Data</h3>
+<p>Create training data organized in folders:</p>
+<pre><code>training_data/
+├── source/          # Input images (e.g., noisy, raw)
+│   ├── img_001.tif
+│   ├── img_002.tif
+│   └── ...
+└── target/          # Ground truth (e.g., clean, annotated masks)
+    ├── img_001.tif
+    ├── img_002.tif
+    └── ...
+</code></pre>
+<p>For Noise2Void: only <code>source/</code> is needed (no targets).</p>
+<h3>Step 2: Upload to Google Drive</h3>
+<p>Upload your training data folder to Google Drive.</p>
+<h3>Step 3: Open the Notebook</h3>
+<ol>
+<li>Go to <a href="https://github.com/HenriquesLab/ZeroCostDL4Mic">https://github.com/HenriquesLab/ZeroCostDL4Mic</a></li>
+<li>Click on the notebook for your method (e.g., StarDist)</li>
+<li>Click "Open in Colab"</li>
+</ol>
+<h3>Step 4: Follow the Notebook</h3>
+<p>Each notebook has the same structure:<br />
+1. <strong>Install dependencies</strong> (run the first cell)<br />
+2. <strong>Mount Google Drive</strong> (to access your data)<br />
+3. <strong>Set paths</strong> to your training data<br />
+4. <strong>Configure training</strong> (epochs, batch size, patch size)<br />
+5. <strong>Train</strong> (typically 30-120 min on Colab GPU)<br />
+6. <strong>Evaluate</strong> (quality metrics on held-out data)<br />
+7. <strong>Export model</strong> (download for use in Fiji or Python)</p>
+<h3>Step 5: Use Your Model</h3>
+<ul>
+<li><strong>In Fiji:</strong> Load via StarDist plugin, CSBDeep, or DeepImageJ</li>
+<li><strong>In Python:</strong> Load with the corresponding library</li>
+<li><strong>Share:</strong> Upload to the BioImage Model Zoo</li>
+</ul>
+<hr />
+<h2>Tips for Best Results</h2>
+<ol>
+<li><strong>Start small:</strong> 10-20 annotated images can be enough for fine-tuning</li>
+<li><strong>Diversity matters:</strong> Include images from different conditions, densities, intensities</li>
+<li><strong>Augmentation helps:</strong> The notebooks include data augmentation (rotation, flipping, scaling) by default</li>
+<li><strong>Monitor training:</strong> Watch the loss curves — if validation loss starts increasing, you're overfitting</li>
+<li><strong>Save your model:</strong> Download from Google Drive before your Colab session expires</li>
+</ol>
+<hr />
+<h2>Annotation Tools for Creating Training Data</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best For</th>
+<th>Ease of Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fiji ROI Manager</strong></td>
+<td>Drawing ROIs around objects</td>
+<td>Familiar to Fiji users</td>
+</tr>
+<tr>
+<td><strong>LabKit</strong></td>
+<td>Pixel classification labels</td>
+<td>Very interactive</td>
+</tr>
+<tr>
+<td><strong>napari</strong></td>
+<td>Large-scale annotation</td>
+<td>Python-native, powerful</td>
+</tr>
+<tr>
+<td><strong>QuPath</strong></td>
+<td>Histology annotation</td>
+<td>Designed for whole-slide images</td>
+</tr>
+<tr>
+<td><strong>CVAT</strong></td>
+<td>Web-based annotation</td>
+<td>Good for team projects</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>See also:</strong> <a href="../04-hands-on-labs/lab-03-denoising-with-care.html" class="internal-link">Lab 03 - Denoising with CARE</a> for a practical example using ZeroCostDL4Mic notebooks</p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

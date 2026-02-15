@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08 - DeepImageJ and the BioImage Model Zoo</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>08 - DeepImageJ and the BioImage Model Zoo</h1>
+<p><a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=deepimagej" class="tag">#deepimagej</a> <a href="../../search.html?tag=bioimage-model-zoo" class="tag">#bioimage-model-zoo</a> <a href="../../search.html?tag=segmentation" class="tag">#segmentation</a></p>
+<hr />
+<h2>Overview</h2>
+<p>DeepImageJ is a plugin that lets you run virtually any deep learning model inside Fiji. Combined with the BioImage Model Zoo — a community repository of pre-trained models — it means you can apply state-of-the-art AI to your images without writing a single line of code or training anything.</p>
+<p>🔗 <strong>DeepImageJ:</strong> <a href="https://deepimagej.github.io">https://deepimagej.github.io</a><br />
+🔗 <strong>BioImage Model Zoo:</strong> <a href="https://bioimage.io">https://bioimage.io</a><br />
+🔗 <strong>Paper:</strong> Gómez-de-Mariscal et al., "DeepImageJ: A user-friendly environment to run deep learning models in ImageJ" (Nature Methods, 2021)</p>
+<hr />
+<h2>The BioImage Model Zoo</h2>
+<h3>What It Is</h3>
+<p>Think of it as an "app store" for bioimage AI models. Researchers train models, package them in a standard format, and share them for anyone to use.</p>
+<h3>How to Browse</h3>
+<ol>
+<li>Go to <a href="https://bioimage.io">https://bioimage.io</a></li>
+<li>Browse by <strong>task:</strong> segmentation, denoising, detection, classification</li>
+<li>Browse by <strong>modality:</strong> fluorescence, electron microscopy, histology, phase contrast</li>
+<li>Each model has:</li>
+<li>Description of what it does</li>
+<li>What data it was trained on</li>
+<li>Test images to verify it works</li>
+<li>Download link</li>
+</ol>
+<h3>Example Models Available</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Task</th>
+<th>Modality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nucleus segmentation (StarDist)</td>
+<td>Instance segmentation</td>
+<td>Fluorescence</td>
+</tr>
+<tr>
+<td>Mitochondria segmentation</td>
+<td>Semantic segmentation</td>
+<td>Electron microscopy</td>
+</tr>
+<tr>
+<td>Cell membrane segmentation</td>
+<td>Semantic segmentation</td>
+<td>Light sheet</td>
+</tr>
+<tr>
+<td>Platelet segmentation</td>
+<td>Instance segmentation</td>
+<td>Fluorescence</td>
+</tr>
+<tr>
+<td>Broad nucleus segmentation</td>
+<td>Instance segmentation</td>
+<td>H&amp;E histology</td>
+</tr>
+<tr>
+<td>Denoising (CARE)</td>
+<td>Image restoration</td>
+<td>Various</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<div class="admonition-title">Search before training</div>
+<div class="admonition-content">
+Before spending days creating training data and training a model, search the Zoo. Someone may have already trained a model for your exact use case.
+</div></div>
+
+<hr />
+<h2>Using DeepImageJ in Fiji</h2>
+<h3>Installing a Model</h3>
+<p><strong>Method 1: From the Zoo (recommended)</strong><br />
+1. Go to <a href="https://bioimage.io">https://bioimage.io</a><br />
+2. Find a model that matches your data<br />
+3. Download the model (.zip file)<br />
+4. In Fiji: <strong>Plugins → DeepImageJ → Install Model</strong><br />
+5. Select the downloaded .zip file<br />
+6. The model is now available in DeepImageJ</p>
+<p><strong>Method 2: From within Fiji</strong><br />
+1. <strong>Plugins → DeepImageJ → DeepImageJ Install Model</strong><br />
+2. Browse available models directly from Fiji<br />
+3. Click Install</p>
+<h3>Running a Model</h3>
+<ol>
+<li>Open your image in Fiji</li>
+<li><strong>Plugins → DeepImageJ → DeepImageJ Run</strong></li>
+<li>Select the installed model from the dropdown</li>
+<li>Adjust pre/post-processing if needed</li>
+<li>Click <strong>Run</strong></li>
+<li>Results appear as a new image (semantic segmentation mask, denoised image, etc.)</li>
+</ol>
+<h3>Converting Results to ROIs</h3>
+<p>DeepImageJ outputs typically need post-processing to become usable ROIs:</p>
+<pre><code class="language-javascript">// After running DeepImageJ, convert label image to ROIs
+// Assuming the output is a label image where each object has a unique value
+
+// Threshold each label to create individual ROIs
+selectWindow(&quot;DeepImageJ_output&quot;);
+run(&quot;Duplicate...&quot;, &quot;title=labels&quot;);
+
+nLabels = getValue(&quot;Max&quot;);
+for (i = 1; i &lt;= nLabels; i++) {
+    selectWindow(&quot;labels&quot;);
+    run(&quot;Duplicate...&quot;, &quot;title=temp&quot;);
+    setThreshold(i, i);
+    run(&quot;Create Selection&quot;);
+    roiManager(&quot;Add&quot;);
+    close(&quot;temp&quot;);
+}
+
+// Now measure
+roiManager(&quot;Measure&quot;);
+</code></pre>
+<hr />
+<h2>The Model Format: BioImage.IO Model Resource Description</h2>
+<p>Models in the zoo use a standardized format (RDF — Resource Description Format) that includes:</p>
+<pre><code class="language-yaml"># Example model.yaml (simplified)
+name: &quot;Nucleus Segmentation&quot;
+description: &quot;StarDist model for fluorescent nuclei&quot;
+authors:
+  - name: &quot;Author Name&quot;
+type: model
+inputs:
+  - name: input
+    axes: &quot;bxyc&quot;        # batch, x, y, channel
+    data_type: float32
+    shape: [1, 256, 256, 1]
+outputs:
+  - name: output
+    axes: &quot;bxyc&quot;
+    data_type: float32
+weights:
+  tensorflow_saved_model_bundle:
+    source: ./weights
+test_inputs:
+  - test_input.npy
+test_outputs:
+  - test_output.npy
+</code></pre>
+<p>This standardization means the same model can run in:<br />
+- Fiji (via DeepImageJ)<br />
+- Python (via bioimageio.core)<br />
+- napari<br />
+- Icy<br />
+- QuPath<br />
+- ImJoy</p>
+<hr />
+<h2>Building Your Own Pipeline with BioImage Zoo Models</h2>
+<h3>Step 1: Find a Relevant Model</h3>
+<p>Search <a href="https://bioimage.io">https://bioimage.io</a> with keywords matching your data:<br />
+- "nuclei fluorescence"<br />
+- "mitochondria electron microscopy"<br />
+- "cell membrane confocal"<br />
+- "denoising"</p>
+<h3>Step 2: Test on Your Data</h3>
+<p>Download the model, run it on a few of your images, and evaluate:<br />
+- Do the segmentation boundaries look correct?<br />
+- Are objects being missed or falsely detected?<br />
+- Does it handle the full range of conditions in your dataset?</p>
+<h3>Step 3: Decide Next Steps</h3>
+<table>
+<thead>
+<tr>
+<th>Evaluation Result</th>
+<th>Next Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Works perfectly</td>
+<td>Use it! You're done.</td>
+</tr>
+<tr>
+<td>Works mostly (&gt;80% accuracy)</td>
+<td>Fine-tune with a few annotated images</td>
+</tr>
+<tr>
+<td>Doesn't work well</td>
+<td>Try a different model, or train from scratch</td>
+</tr>
+<tr>
+<td>Nothing relevant in the zoo</td>
+<td>Train your own model (see <a href="../05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html" class="internal-link">13 - ZeroCostDL4Mic - Train Models for Free</a>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Advanced: Using Models in Python with bioimageio.core</h2>
+<pre><code class="language-python">import bioimageio.core
+from bioimageio.core import load_resource_description
+import numpy as np
+from skimage import io
+
+# Load model from the zoo
+model = load_resource_description(&quot;&lt;a href=&quot;https://bioimage.io/model/...&quot;&gt;https://bioimage.io/model/...&lt;/a&gt;&quot;)
+
+# Or from a local file
+model = load_resource_description(&quot;path/to/model.zip&quot;)
+
+# Create prediction pipeline
+pipeline = bioimageio.core.create_prediction_pipeline(model)
+
+# Run inference
+input_image = io.imread(&quot;my_image.tif&quot;).astype(np.float32)
+# Reshape to match model expectations (batch, x, y, channel)
+input_tensor = input_image[np.newaxis, ..., np.newaxis]
+
+result = pipeline(input_tensor)
+output = result[0].squeeze()  # Remove batch and channel dims
+
+io.imsave(&quot;segmentation.tif&quot;, output)
+</code></pre>
+<hr />
+<h2>Recommended Models to Start With</h2>
+<p>For a research team working with fluorescence microscopy:</p>
+<ol>
+<li><strong>StarDist Versatile</strong> — nuclear segmentation (available both in StarDist plugin and Zoo)</li>
+<li><strong>Cellpose cyto3</strong> — cell segmentation (via Cellpose directly)</li>
+<li><strong>CARE denoising models</strong> — if your data is noisy</li>
+<li><strong>Nucleus segmentation in H&amp;E</strong> — if doing histology</li>
+</ol>
+<p>For electron microscopy:<br />
+1. <strong>Mitochondria segmentation</strong> — multiple models available<br />
+2. <strong>Membrane segmentation</strong> — for tissue reconstruction<br />
+3. <strong>Synapse detection</strong> — for neuroscience</p>
+<hr />
+<p><strong>Hands-on:</strong> <a href="../04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html" class="internal-link">Lab 04 - BioImage Model Zoo in DeepImageJ</a><br />
+<strong>Next:</strong> <a href="../03-core-tools/09-trackmate-with-ai-detectors.html" class="internal-link">09 - TrackMate with AI Detectors</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

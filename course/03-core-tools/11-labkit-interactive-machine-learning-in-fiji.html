@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 - LabKit - Interactive Machine Learning in Fiji</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>11 - LabKit — Interactive Machine Learning in Fiji</h1>
+<p><a href="../../search.html?tag=segmentation" class="tag">#segmentation</a> <a href="../../search.html?tag=machine-learning" class="tag">#machine-learning</a> <a href="../../search.html?tag=labkit" class="tag">#labkit</a> <a href="../../search.html?tag=interactive" class="tag">#interactive</a></p>
+<hr />
+<h2>Overview</h2>
+<p>LabKit bridges the gap between classical thresholding and deep learning. It lets you paint a few strokes on your image to label foreground and background, then trains a machine learning classifier (random forest) in real-time to segment the entire image. No coding, no training datasets, no GPUs needed.</p>
+<p>Think of it as "smart thresholding" — you show it what you want, and it figures out the rules.</p>
+<p>🔗 <strong>LabKit:</strong> <a href="https://imagej.net/plugins/labkit/">https://imagej.net/plugins/labkit/</a><br />
+🔗 <strong>Paper:</strong> Arzt et al., "LABKIT: Labeling and Segmentation Toolkit for Big Image Data" (Frontiers in Computer Science, 2022)</p>
+<hr />
+<h2>When to Use LabKit</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Best Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Round nuclei, well-separated</td>
+<td>StarDist (pre-trained, zero effort)</td>
+</tr>
+<tr>
+<td>Irregular cells, any shape</td>
+<td>Cellpose (pre-trained, minimal config)</td>
+</tr>
+<tr>
+<td>Complex texture-based segmentation</td>
+<td><strong>LabKit</strong> (your annotations teach the classifier)</td>
+</tr>
+<tr>
+<td>Objects with unique features not in any model</td>
+<td><strong>LabKit</strong> (custom training in minutes)</td>
+</tr>
+<tr>
+<td>Quick exploration / prototyping</td>
+<td><strong>LabKit</strong> (fastest way to test if segmentation is feasible)</td>
+</tr>
+</tbody>
+</table>
+<p>LabKit is ideal for situations where:<br />
+- Pre-trained models don't fit your specific data<br />
+- You need pixel classification (multiple tissue types, compartments)<br />
+- You want fast, interactive results without any setup</p>
+<hr />
+<h2>How to Use LabKit</h2>
+<h3>Step 1: Open LabKit</h3>
+<ol>
+<li>Open your image in Fiji</li>
+<li><strong>Plugins → LabKit → Open Current Image With LabKit</strong></li>
+</ol>
+<h3>Step 2: Paint Labels</h3>
+<ul>
+<li>Select the <strong>brush tool</strong></li>
+<li>Choose a label class (e.g., "foreground" / "background")</li>
+<li>Paint a few strokes on representative regions</li>
+<li>Add more classes if needed (e.g., "nuclei", "cytoplasm", "background")</li>
+</ul>
+<h3>Step 3: Train</h3>
+<ul>
+<li>Click <strong>Train Classifier</strong> (or it trains automatically)</li>
+<li>The classifier applies to the entire image in real-time</li>
+<li>Review the result overlay</li>
+</ul>
+<h3>Step 4: Iterate</h3>
+<ul>
+<li>Find areas where the classifier fails</li>
+<li>Paint corrections in those areas</li>
+<li>Re-train</li>
+<li>Repeat until satisfied</li>
+</ul>
+<h3>Step 5: Apply</h3>
+<ul>
+<li>Export the segmentation as a label image</li>
+<li>Apply to other images in the dataset</li>
+</ul>
+<hr />
+<h2>LabKit vs. Ilastik</h2>
+<p>LabKit is similar in concept to <strong>Ilastik</strong> (another popular pixel classification tool). Key differences:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>LabKit</th>
+<th>Ilastik</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runs inside Fiji</td>
+<td>Yes</td>
+<td>No (standalone application)</td>
+</tr>
+<tr>
+<td>Large image support</td>
+<td>Excellent (BigDataViewer-based)</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>3D support</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Algorithm</td>
+<td>Random forest on image features</td>
+<td>Random forest on image features</td>
+</tr>
+<tr>
+<td>Export to Fiji</td>
+<td>Direct</td>
+<td>Via file export</td>
+</tr>
+<tr>
+<td>Learning curve</td>
+<td>Minimal</td>
+<td>Moderate</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<div class="admonition-title">Start with LabKit for quick exploration, use Ilastik for complex multi-step workflows</div>
+<div class="admonition-content">
+</div></div>
+
+<hr />
+<h2>Combining LabKit with AI Tools</h2>
+<p>LabKit works well as a <strong>quality control</strong> or <strong>post-processing</strong> step after AI segmentation:</p>
+<ol>
+<li>Run StarDist or Cellpose for initial segmentation</li>
+<li>Where the AI fails, use LabKit to create a correction mask</li>
+<li>Combine the results</li>
+</ol>
+<p>Or use LabKit to create training data for deep learning models:<br />
+1. Segment a few images with LabKit<br />
+2. Export as label images<br />
+3. Use as training data for StarDist or Cellpose custom models</p>
+<hr />
+<p><strong>Next:</strong> <a href="../04-hands-on-labs/lab-01-stardist-nuclei-counting.html" class="internal-link">Lab 01 - StarDist Nuclei Counting</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

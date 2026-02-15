@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Installation Guide</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Tool Installation Guide</h1>
+<p><a href="../../search.html?tag=installation" class="tag">#installation</a> <a href="../../search.html?tag=setup" class="tag">#setup</a> <a href="../../search.html?tag=reference" class="tag">#reference</a></p>
+<hr />
+<h2>Prerequisites</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fiji</strong></td>
+<td>Latest version</td>
+<td>Latest version</td>
+</tr>
+<tr>
+<td><strong>Java</strong></td>
+<td>8</td>
+<td>11+</td>
+</tr>
+<tr>
+<td><strong>Python</strong></td>
+<td>3.8</td>
+<td>3.10+</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>8 GB</td>
+<td>16+ GB</td>
+</tr>
+<tr>
+<td><strong>GPU</strong></td>
+<td>Not required</td>
+<td>NVIDIA with CUDA (for training)</td>
+</tr>
+<tr>
+<td><strong>Disk Space</strong></td>
+<td>5 GB</td>
+<td>20+ GB (for models and data)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Step 1: Install/Update Fiji</h2>
+<h3>Fresh Installation</h3>
+<ol>
+<li>Download from <a href="https://fiji.sc/#download">https://fiji.sc/#download</a></li>
+<li>Extract to a location with write permissions (NOT Program Files on Windows)</li>
+<li>Run the Fiji executable</li>
+</ol>
+<h3>Update Existing Installation</h3>
+<ol>
+<li>Open Fiji</li>
+<li><strong>Help → Update...</strong></li>
+<li><strong>Apply Changes</strong></li>
+<li>Restart</li>
+</ol>
+<hr />
+<h2>Step 2: Enable Update Sites</h2>
+<ol>
+<li><strong>Help → Update...</strong></li>
+<li>Click <strong>Manage Update Sites</strong></li>
+<li>Enable the following (check the box):</li>
+</ol>
+<h3>Essential</h3>
+<ul>
+<li class="task-list-item"><input type="checkbox" id="3754f31d" checked onclick="saveFromCheckbox(this)"><label for="3754f31d"><strong>CSBDeep</strong> — Deep learning infrastructure</label></li>
+<li class="task-list-item"><input type="checkbox" id="b06ad6cb" checked onclick="saveFromCheckbox(this)"><label for="b06ad6cb"><strong>StarDist</strong> — Nuclear segmentation</label></li>
+<li class="task-list-item"><input type="checkbox" id="c921789e" checked onclick="saveFromCheckbox(this)"><label for="c921789e"><strong>DeepImageJ</strong> — Run BioImage Zoo models</label></li>
+</ul>
+<h3>Recommended</h3>
+<ul>
+<li class="task-list-item"><input type="checkbox" id="8ab02220" checked onclick="saveFromCheckbox(this)"><label for="8ab02220"><strong>CLIJ</strong> — GPU acceleration</label></li>
+<li class="task-list-item"><input type="checkbox" id="1e3f9bfd" checked onclick="saveFromCheckbox(this)"><label for="1e3f9bfd"><strong>CLIJ2</strong> — GPU acceleration (updated)</label></li>
+<li class="task-list-item"><input type="checkbox" id="d5b0d425" checked onclick="saveFromCheckbox(this)"><label for="d5b0d425"><strong>TrackMate-StarDist</strong> — StarDist in TrackMate</label></li>
+<li class="task-list-item"><input type="checkbox" id="653da528" checked onclick="saveFromCheckbox(this)"><label for="653da528"><strong>LabKit</strong> — Interactive ML segmentation</label></li>
+</ul>
+<h3>Optional</h3>
+<ul>
+<li class="task-list-item"><input type="checkbox" id="c41e2a82"  onclick="saveFromCheckbox(this)"><label for="c41e2a82"><strong>MorphoLibJ</strong> — Morphological operations</label></li>
+<li class="task-list-item"><input type="checkbox" id="4110ad9f"  onclick="saveFromCheckbox(this)"><label for="4110ad9f"><strong>Bio-Formats</strong> — Proprietary file format support (usually pre-installed)</label></li>
+<li>
+<p>[ ] <strong>3D ImageJ Suite</strong> — 3D analysis tools</p>
+</li>
+<li>
+<p>Click <strong>Close</strong> → <strong>Apply Changes</strong> → <strong>Restart Fiji</strong></p>
+</li>
+</ul>
+<hr />
+<h2>Step 3: Install Python Tools</h2>
+<h3>Option A: Using pip (simplest)</h3>
+<pre><code class="language-bash"># Create a virtual environment (recommended)
+python -m venv bioimage_env
+# Activate it:
+#   Windows: bioimage_env\Scripts\activate
+#   Mac/Linux: source bioimage_env/bin/activate
+
+# Install core packages
+pip install cellpose
+pip install pyimagej
+pip install micro_sam
+pip install numpy scikit-image pandas matplotlib
+pip install n2v  # Noise2Void
+</code></pre>
+<h3>Option B: Using conda (more reliable for complex dependencies)</h3>
+<pre><code class="language-bash"># Create environment
+conda create -n bioimage python=3.10
+conda activate bioimage
+
+# Install packages
+conda install -c conda-forge pyimagej openjdk=11
+pip install cellpose
+pip install micro_sam
+conda install -c conda-forge numpy scikit-image pandas matplotlib
+</code></pre>
+<hr />
+<h2>Step 4: Verify Everything Works</h2>
+<h3>Test Fiji Plugins</h3>
+<p>Open Fiji and verify each plugin loads:</p>
+<pre><code>Plugins → StarDist → StarDist 2D                    (should open dialog)
+Plugins → DeepImageJ → DeepImageJ Run               (should open dialog)
+Plugins → ImageJ on GPU (CLIJ2)                      (should show menu)
+Plugins → Tracking → TrackMate                       (should start wizard)
+</code></pre>
+<h3>Test Python</h3>
+<pre><code class="language-bash">python -c &quot;from cellpose import models; print('✓ Cellpose')&quot;
+python -c &quot;import imagej; print('✓ PyImageJ')&quot;
+python -c &quot;import numpy; print('✓ NumPy')&quot;
+python -c &quot;import skimage; print('✓ scikit-image')&quot;
+python -c &quot;import pandas; print('✓ pandas')&quot;
+</code></pre>
+<hr />
+<h2>Troubleshooting</h2>
+<h3>"TensorFlow not found" when running StarDist</h3>
+<ul>
+<li>Make sure CSBDeep update site is enabled</li>
+<li>Restart Fiji after enabling update sites</li>
+<li>Try: <strong>Help → Update... → Apply Changes</strong> again</li>
+</ul>
+<h3>Fiji runs out of memory</h3>
+<ul>
+<li><strong>Edit → Options → Memory &amp; Threads</strong> → increase maximum memory</li>
+<li>Set to ~75% of your system RAM</li>
+</ul>
+<h3>Cellpose is slow</h3>
+<ul>
+<li>CPU mode works but is slower</li>
+<li>For GPU: install <code>pip install cellpose[gui]</code> with NVIDIA CUDA toolkit</li>
+<li>GPU is mainly needed for training, not inference</li>
+</ul>
+<h3>PyImageJ won't initialize</h3>
+<ul>
+<li>Ensure Java 11+ is installed</li>
+<li>Try: <code>ij = imagej.init('sc.fiji:fiji', mode='headless')</code></li>
+<li>Check: <a href="https://pyimagej.readthedocs.io/en/latest/Troubleshooting.html">https://pyimagej.readthedocs.io/en/latest/Troubleshooting.html</a></li>
+</ul>
+<h3>DeepImageJ model won't load</h3>
+<ul>
+<li>Ensure the model format matches your DeepImageJ version</li>
+<li>Check Java memory allocation</li>
+<li>Try re-downloading the model</li>
+</ul>
+<hr />
+<h2>Useful Downloads</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fiji</td>
+<td><a href="https://fiji.sc/#download">https://fiji.sc/#download</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></td>
+</tr>
+<tr>
+<td>Miniconda</td>
+<td><a href="https://docs.conda.io/en/latest/miniconda.html">https://docs.conda.io/en/latest/miniconda.html</a></td>
+</tr>
+<tr>
+<td>NVIDIA CUDA Toolkit</td>
+<td><a href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a></td>
+</tr>
+<tr>
+<td>Git</td>
+<td><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></td>
+</tr>
+</tbody>
+</table>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

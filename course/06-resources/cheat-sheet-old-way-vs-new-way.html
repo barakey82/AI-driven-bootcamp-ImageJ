@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheat Sheet - Old Way vs New Way</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Cheat Sheet — Old Way vs New Way</h1>
+<p><a href="../../search.html?tag=reference" class="tag">#reference</a> <a href="../../search.html?tag=cheat-sheet" class="tag">#cheat-sheet</a> <a href="../../search.html?tag=comparison" class="tag">#comparison</a></p>
+<hr />
+<h2>Quick Reference Card</h2>
+<p>Print this or keep it on your desk. For each common task, the classical approach and the modern AI approach side by side.</p>
+<hr />
+<h2>Segmentation</h2>
+<h3>Nuclei in Fluorescence</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method</strong></td>
+<td>Threshold → Watershed → Analyze Particles</td>
+<td>StarDist 2D</td>
+</tr>
+<tr>
+<td><strong>Steps</strong></td>
+<td>~10 (threshold, mask, fill, watershed, analyze)</td>
+<td>~3 (open, run StarDist, measure)</td>
+</tr>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td>60-80% on dense tissue</td>
+<td>90-98%</td>
+</tr>
+<tr>
+<td><strong>Touching objects</strong></td>
+<td>Frequently fails</td>
+<td>Handles well</td>
+</tr>
+<tr>
+<td><strong>Time per image</strong></td>
+<td>5-30 sec + manual correction</td>
+<td>2-10 sec, minimal correction</td>
+</tr>
+<tr>
+<td><strong>Fiji command</strong></td>
+<td><code>run("Watershed")</code> → <code>run("Analyze Particles...")</code></td>
+<td><code>Plugins → StarDist → StarDist 2D</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Irregular Cell Shapes</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method</strong></td>
+<td>Manual ROI drawing</td>
+<td>Cellpose (cyto3)</td>
+</tr>
+<tr>
+<td><strong>Steps</strong></td>
+<td>Draw each cell by hand</td>
+<td>Set diameter → run</td>
+</tr>
+<tr>
+<td><strong>Time per image</strong></td>
+<td>10 min - 2 hours</td>
+<td>5-30 seconds</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Not feasible for large datasets</td>
+<td>Batch-processable</td>
+</tr>
+<tr>
+<td><strong>Command</strong></td>
+<td>Manual</td>
+<td><code>python -m cellpose --dir ./images --pretrained_model cyto3</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Organelles in EM</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method</strong></td>
+<td>Manual tracing</td>
+<td>DeepImageJ + BioImage Zoo model</td>
+</tr>
+<tr>
+<td><strong>Steps</strong></td>
+<td>Trace each organelle by hand</td>
+<td>Download model → run</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>Hours per image</td>
+<td>Seconds per image</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Denoising</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method</strong></td>
+<td>Gaussian / Median filter</td>
+<td>CARE or Noise2Void</td>
+</tr>
+<tr>
+<td><strong>Effect on detail</strong></td>
+<td>Destroys fine structures</td>
+<td>Preserves structures</td>
+</tr>
+<tr>
+<td><strong>Training needed</strong></td>
+<td>No</td>
+<td>Yes (CARE) / No (N2V with self-training)</td>
+</tr>
+<tr>
+<td><strong>Fiji command</strong></td>
+<td><code>run("Gaussian Blur...", "sigma=2")</code></td>
+<td><code>Plugins → CSBDeep → N2V → predict</code></td>
+</tr>
+<tr>
+<td><strong>Quality metric</strong></td>
+<td>Noise reduced but blurry</td>
+<td>Noise reduced, detail preserved</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Cell Tracking</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Detection</strong></td>
+<td>LoG / DoG detector</td>
+<td>StarDist / Cellpose detector</td>
+</tr>
+<tr>
+<td><strong>False detections</strong></td>
+<td>Many (requires threshold tuning)</td>
+<td>Few (AI learned what cells look like)</td>
+</tr>
+<tr>
+<td><strong>Tracking errors</strong></td>
+<td>Frequent broken/switched tracks</td>
+<td>Significantly fewer</td>
+</tr>
+<tr>
+<td><strong>Manual correction</strong></td>
+<td>Hours</td>
+<td>Minutes</td>
+</tr>
+<tr>
+<td><strong>Fiji path</strong></td>
+<td>TrackMate → LoG Detector</td>
+<td>TrackMate → StarDist Detector</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Batch Processing</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tool</strong></td>
+<td>Fiji Macro (.ijm)</td>
+<td>Python script + Cellpose/StarDist</td>
+</tr>
+<tr>
+<td><strong>File formats</strong></td>
+<td>Limited (mostly TIFF)</td>
+<td>Any (via Bio-Formats / skimage)</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>Results table in Fiji</td>
+<td>CSV / pandas DataFrame</td>
+</tr>
+<tr>
+<td><strong>Plotting</strong></td>
+<td>External (Excel, Prism)</td>
+<td>matplotlib / seaborn (in same script)</td>
+</tr>
+<tr>
+<td><strong>Reproducibility</strong></td>
+<td>Good (macro is deterministic)</td>
+<td>Better (script + model version + environment)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Speed (GPU Acceleration)</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gaussian Blur 3D</strong></td>
+<td>12 sec (CPU)</td>
+<td>0.05 sec (CLIJ2 GPU)</td>
+</tr>
+<tr>
+<td><strong>3D Watershed</strong></td>
+<td>45 sec (CPU)</td>
+<td>0.5 sec (CLIJ2 GPU)</td>
+</tr>
+<tr>
+<td><strong>Macro syntax</strong></td>
+<td><code>run("Gaussian Blur...", "sigma=2")</code></td>
+<td><code>Ext.CLIJ2_gaussianBlur2D(in, out, 2, 2)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Model Training</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Old Way</th>
+<th>New Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Approach</strong></td>
+<td>N/A (no models to train)</td>
+<td>ZeroCostDL4Mic on Google Colab</td>
+</tr>
+<tr>
+<td><strong>Hardware</strong></td>
+<td>N/A</td>
+<td>Free GPU via Google Colab</td>
+</tr>
+<tr>
+<td><strong>Expertise</strong></td>
+<td>N/A</td>
+<td>Follow notebook cells</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>N/A</td>
+<td>30-120 min training</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Decision Flowchart</h2>
+<pre><code>Need to analyze microscopy images?
+│
+├─ Are objects well-separated, high contrast?
+│  └─ YES → Classical methods still work fine
+│
+├─ Are objects touching / overlapping?
+│  ├─ Round (nuclei)? → StarDist
+│  └─ Irregular (cells)? → Cellpose
+│
+├─ Is the image too noisy?
+│  └─ Denoise first (CARE / N2V) → then segment
+│
+├─ Need to track over time?
+│  └─ TrackMate + StarDist/Cellpose detector
+│
+├─ Need something specific (organelles, membranes)?
+│  └─ Check BioImage Model Zoo → DeepImageJ
+│
+├─ Nothing works on your data?
+│  └─ Annotate with Micro-SAM → Train custom model (ZeroCostDL4Mic)
+│
+└─ Processing is too slow?
+   └─ CLIJ2 for GPU acceleration
+</code></pre>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

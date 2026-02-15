@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 03 - Denoising with CARE</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Lab 03 — Denoising with CARE</h1>
+<p><a href="../../search.html?tag=lab" class="tag">#lab</a> <a href="../../search.html?tag=denoising" class="tag">#denoising</a> <a href="../../search.html?tag=care" class="tag">#care</a> <a href="../../search.html?tag=hands-on" class="tag">#hands-on</a></p>
+<hr />
+<h2>Objective</h2>
+<p>Compare classical denoising filters against AI-based denoising (CARE / Noise2Void) to see how AI preserves biological detail that classical filters destroy.</p>
+<p><strong>Time:</strong> ~30 minutes (using pre-trained models) or ~2 hours (training your own via ZeroCostDL4Mic)<br />
+<strong>Prerequisites:</strong> Fiji with CSBDeep plugin, or Python environment</p>
+<hr />
+<h2>Part A: Classical Denoising (The Trade-Off)</h2>
+<h3>Create an Artificially Noisy Image</h3>
+<pre><code class="language-javascript">// Start with a clean sample image
+run(&quot;Fluorescent Cells&quot;);  // Or open any clean fluorescence image
+rename(&quot;clean&quot;);
+run(&quot;Duplicate...&quot;, &quot;title=noisy&quot;);
+
+// Add Gaussian noise
+selectWindow(&quot;noisy&quot;);
+run(&quot;Add Specified Noise...&quot;, &quot;standard=25&quot;);
+
+// Now try to remove the noise with classical filters
+</code></pre>
+<h3>Apply Classical Filters</h3>
+<pre><code class="language-javascript">// Gaussian Blur
+selectWindow(&quot;noisy&quot;);
+run(&quot;Duplicate...&quot;, &quot;title=gaussian_blur&quot;);
+run(&quot;Gaussian Blur...&quot;, &quot;sigma=2&quot;);
+
+// Median Filter
+selectWindow(&quot;noisy&quot;);
+run(&quot;Duplicate...&quot;, &quot;title=median_filter&quot;);
+run(&quot;Median...&quot;, &quot;radius=2&quot;);
+
+// Non-Local Means (more advanced classical filter)
+selectWindow(&quot;noisy&quot;);
+run(&quot;Duplicate...&quot;, &quot;title=nlm_filter&quot;);
+run(&quot;Non-local Means Denoising&quot;, &quot;sigma=15 smoothing_factor=1&quot;);
+</code></pre>
+<h3>Compare with Original</h3>
+<pre><code class="language-javascript">// Create montage for comparison
+run(&quot;Images to Stack&quot;, &quot;name=comparison title=[] use&quot;);
+run(&quot;Make Montage...&quot;, &quot;columns=4 rows=1 scale=0.5 label&quot;);
+// Order: clean | noisy | gaussian | median
+</code></pre>
+<p><strong>Observe:</strong> The Gaussian blur removes noise but blurs all edges. The median filter preserves edges better but removes fine texture. Neither recovers the original quality.</p>
+<hr />
+<h2>Part B: AI Denoising with Noise2Void (No Clean Reference Needed)</h2>
+<h3>Option 1: In Fiji</h3>
+<ol>
+<li>Open your noisy image</li>
+<li><strong>Plugins → CSBDeep → N2V → predict</strong> (if you have a pre-trained model)</li>
+<li>Or <strong>Plugins → CSBDeep → N2V → train + predict</strong> to train on your noisy images directly</li>
+</ol>
+<h3>Option 2: Using ZeroCostDL4Mic (Recommended)</h3>
+<p>🔗 Open the Noise2Void notebook: <a href="https://colab.research.google.com/github/HenriquesLab/ZeroCostDL4Mic/blob/master/Colab_notebooks/Noise2Void_2D_ZeroCostDL4Mic.ipynb">https://colab.research.google.com/github/HenriquesLab/ZeroCostDL4Mic/blob/master/Colab_notebooks/Noise2Void_2D_ZeroCostDL4Mic.ipynb</a></p>
+<ol>
+<li>Upload your noisy images to Google Drive</li>
+<li>Follow the notebook cells:</li>
+<li>Set paths to your data</li>
+<li>Configure training (100 epochs is usually enough)</li>
+<li>Train (takes ~10-20 min on Colab GPU)</li>
+<li>Apply to your images</li>
+<li>Download the denoised results</li>
+</ol>
+<h3>Option 3: Using Python</h3>
+<pre><code class="language-python">&quot;&quot;&quot;
+Lab 03: Noise2Void denoising
+&quot;&quot;&quot;
+from n2v.models import N2VConfig, N2V
+from n2v.internals.N2V_DataGenerator import N2V_DataGenerator
+from skimage import io
+import numpy as np
+
+# Load noisy image
+img = io.imread('noisy_image.tif').astype(np.float32)
+
+# Generate training patches (from the noisy image itself!)
+datagen = N2V_DataGenerator()
+patches = datagen.generate_patches_from_list(
+    [img],
+    shape=(64, 64)
+)
+
+# Split into training and validation
+n_train = int(0.9 * len(patches))
+X_train = patches[:n_train]
+X_val = patches[n_train:]
+
+# Configure
+config = N2VConfig(
+    X_train,
+    unet_kern_size=3,
+    train_steps_per_epoch=100,
+    train_epochs=50,
+    train_batch_size=64,
+    train_loss='mse'
+)
+
+# Train
+model = N2V(config, 'n2v_lab03', basedir='models')
+history = model.train(X_train, X_val)
+
+# Apply
+denoised = model.predict(img, axes='YX')
+
+# Save
+io.imsave('denoised_n2v.tif', denoised)
+print(&quot;Done! Compare noisy_image.tif with denoised_n2v.tif&quot;)
+</code></pre>
+<hr />
+<h2>Part C: Quantitative Comparison</h2>
+<p>If you started with a clean image and added noise artificially, you can measure quality:</p>
+<pre><code class="language-python">from skimage.metrics import peak_signal_noise_ratio, structural_similarity
+import numpy as np
+
+clean = io.imread('clean.tif').astype(np.float32)
+noisy = io.imread('noisy.tif').astype(np.float32)
+gaussian = io.imread('gaussian_denoised.tif').astype(np.float32)
+n2v = io.imread('denoised_n2v.tif').astype(np.float32)
+
+print(&quot;PSNR (higher = better):&quot;)
+print(f&quot;  Noisy:    {peak_signal_noise_ratio(clean, noisy):.1f} dB&quot;)
+print(f&quot;  Gaussian: {peak_signal_noise_ratio(clean, gaussian):.1f} dB&quot;)
+print(f&quot;  N2V:      {peak_signal_noise_ratio(clean, n2v):.1f} dB&quot;)
+
+print(&quot;\nSSIM (higher = better, max 1.0):&quot;)
+print(f&quot;  Noisy:    {structural_similarity(clean, noisy, data_range=clean.max()):.3f}&quot;)
+print(f&quot;  Gaussian: {structural_similarity(clean, gaussian, data_range=clean.max()):.3f}&quot;)
+print(f&quot;  N2V:      {structural_similarity(clean, n2v, data_range=clean.max()):.3f}&quot;)
+</code></pre>
+<p><strong>Expected:</strong> N2V will have higher PSNR and SSIM than classical filters, demonstrating better structure preservation.</p>
+<hr />
+<h2>Takeaways</h2>
+<ul>
+<li>Classical denoising destroys real biological detail along with noise</li>
+<li>CARE/N2V learn what "real structure" looks like and preserve it</li>
+<li>N2V is particularly practical because it doesn't require clean reference images</li>
+<li>AI denoising as a pre-processing step improves downstream segmentation</li>
+</ul>
+<hr />
+<p><strong>Next Lab:</strong> <a href="lab-04-bioimage-model-zoo-in-deepimagej.html" class="internal-link">Lab 04 - BioImage Model Zoo in DeepImageJ</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

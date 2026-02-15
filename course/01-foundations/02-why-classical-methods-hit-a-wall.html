@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 - Why Classical Methods Hit a Wall</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>02 - Why Classical Methods Hit a Wall</h1>
+<p><a href="../../search.html?tag=classical" class="tag">#classical</a> <a href="../../search.html?tag=foundations" class="tag">#foundations</a> <a href="../../search.html?tag=segmentation" class="tag">#segmentation</a></p>
+<hr />
+<h2>Overview</h2>
+<p>The classical toolkit works beautifully on "textbook" images. But real microscopy data is messy. This module documents the exact failure modes that drove the development of AI-based alternatives.</p>
+<hr />
+<h2>Failure Mode 1: Touching and Overlapping Objects</h2>
+<h3>The Problem</h3>
+<p>In dense tissue sections or confluent cell cultures, nuclei or cells touch and overlap. After thresholding, they merge into a single binary blob.</p>
+<p><strong>Classical solution:</strong> Watershed algorithm.</p>
+<p><strong>Why it fails:</strong><br />
+- Watershed assumes objects have round shapes with clear intensity peaks<br />
+- It uses a distance transform that works poorly on elongated or irregular shapes<br />
+- It systematically over-segments large objects and under-segments small clusters</p>
+<pre><code>Classical result:
+┌──────────────────────┐
+│ ●●  →  ●|●           │  ✓ Works (two well-separated round objects)
+│ ●●● →  ●|●|●|●       │  ✗ Over-segmented (split one object into two)
+│ ●●  →  ●●            │  ✗ Under-segmented (two objects remain merged)
+└──────────────────────┘
+</code></pre>
+<p><strong>AI solution:</strong> StarDist learns from thousands of annotated examples what constitutes "one nucleus" regardless of how they're arranged. See <a href="../02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html" class="internal-link">05 - StarDist - Nuclei Segmentation That Actually Works</a>.</p>
+<hr />
+<h2>Failure Mode 2: Irregular Cell Shapes</h2>
+<h3>The Problem</h3>
+<p>Cytoplasm segmentation, bacterial segmentation, or any non-round objects don't match the assumptions baked into classical tools:<br />
+- Thresholding assumes clear intensity separation<br />
+- Watershed assumes round-ish shapes<br />
+- Analyze Particles circularity filters reject irregular shapes</p>
+<p><strong>Classical approach:</strong> Manual ROI drawing. Hours per image.</p>
+<p><strong>AI solution:</strong> Cellpose was specifically designed for arbitrary cell shapes. It uses a flow-field approach that works on virtually any cell type. See <a href="../02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html" class="internal-link">06 - Cellpose - The Universal Cell Segmenter</a>.</p>
+<hr />
+<h2>Failure Mode 3: Low Signal-to-Noise Ratio</h2>
+<h3>The Problem</h3>
+<p>When imaging at high speed, low laser power (to avoid phototoxicity), or deep in tissue, images become noisy. Classical denoising destroys real structure:</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Noise Reduction</th>
+<th>Detail Loss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gaussian Blur σ=1</td>
+<td>Moderate</td>
+<td>Moderate — edges blurred</td>
+</tr>
+<tr>
+<td>Gaussian Blur σ=3</td>
+<td>High</td>
+<td>High — fine structures lost</td>
+</tr>
+<tr>
+<td>Median 3×3</td>
+<td>Moderate</td>
+<td>Low for edges, loses texture</td>
+</tr>
+<tr>
+<td>Median 5×5</td>
+<td>High</td>
+<td>Moderate — small features disappear</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The fundamental trade-off:</strong> Classical filters cannot distinguish noise from signal. They apply the same operation everywhere.</p>
+<p><strong>AI solution:</strong> CARE (Content-Aware image REstoration) and Noise2Void learn what real structure looks like versus noise. They restore detail that classical filters destroy. See <a href="../02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html" class="internal-link">07 - CARE and CSBDeep - AI Image Restoration</a>.</p>
+<hr />
+<h2>Failure Mode 4: Heterogeneous Staining</h2>
+<h3>The Problem</h3>
+<p>Real tissue has uneven staining, autofluorescence gradients, and varying cell types. A single global threshold can't handle this.</p>
+<p><strong>Classical workarounds:</strong><br />
+- Local/adaptive thresholding (partially helps but introduces artifacts)<br />
+- Dividing images into tiles and thresholding separately (tedious, edge artifacts)<br />
+- Manual threshold adjustment per image (not scalable)</p>
+<p><strong>AI solution:</strong> Deep learning models learn to recognize objects by their appearance patterns, not just their intensity. A nucleus is a nucleus regardless of local brightness. This generalization is the core advantage.</p>
+<hr />
+<h2>Failure Mode 5: Scale and Reproducibility</h2>
+<h3>The Problem</h3>
+<p>Even when classical methods work, they require parameter tuning per experiment or per image. This creates two issues:</p>
+<ol>
+<li><strong>Scalability:</strong> Analyzing 10,000 images with manually tuned parameters isn't feasible</li>
+<li><strong>Reproducibility:</strong> Different operators choose different thresholds, giving different results</li>
+</ol>
+<p><strong>AI solution:</strong> A trained model applies consistent learned criteria across your entire dataset. Same model, same results, regardless of who runs it.</p>
+<hr />
+<h2>Failure Mode 6: 3D and Time-Lapse Data</h2>
+<h3>The Problem</h3>
+<p>3D stacks compound every issue:<br />
+- Intensity varies across Z due to light scattering<br />
+- Axial resolution is worse than lateral<br />
+- Watershed in 3D is computationally expensive and often poor<br />
+- Manual correction in 3D is nearly impossible</p>
+<p>Time-lapse adds more:<br />
+- Illumination changes across frames<br />
+- Cells move, divide, and die<br />
+- Drift and photobleaching</p>
+<p><strong>AI solutions:</strong><br />
+- StarDist 3D and Cellpose 3D handle volumetric segmentation<br />
+- CARE handles anisotropic resolution restoration<br />
+- TrackMate with AI detectors handles robust temporal tracking<br />
+- See <a href="../03-core-tools/09-trackmate-with-ai-detectors.html" class="internal-link">09 - TrackMate with AI Detectors</a></p>
+<hr />
+<h2>The Summary Table: Classical vs. AI</h2>
+<table>
+<thead>
+<tr>
+<th>Challenge</th>
+<th>Classical Approach</th>
+<th>Typical Accuracy</th>
+<th>AI Approach</th>
+<th>Typical Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nuclei in dense tissue</td>
+<td>Threshold → Watershed</td>
+<td>60-80%</td>
+<td>StarDist</td>
+<td>90-98%</td>
+</tr>
+<tr>
+<td>Irregular cell shapes</td>
+<td>Manual ROI</td>
+<td>N/A (manual)</td>
+<td>Cellpose</td>
+<td>85-95%</td>
+</tr>
+<tr>
+<td>Noisy images</td>
+<td>Gaussian/Median filter</td>
+<td>Loses detail</td>
+<td>CARE/N2V</td>
+<td>Recovers detail</td>
+</tr>
+<tr>
+<td>Uneven staining</td>
+<td>Adaptive threshold</td>
+<td>Variable</td>
+<td>DL segmentation</td>
+<td>Robust</td>
+</tr>
+<tr>
+<td>3D volumes</td>
+<td>Slice-by-slice + 3D watershed</td>
+<td>Poor</td>
+<td>StarDist 3D / Cellpose 3D</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>Cell tracking</td>
+<td>TrackMate + LoG</td>
+<td>Frequent errors</td>
+<td>TrackMate + StarDist</td>
+<td>Far fewer errors</td>
+</tr>
+<tr>
+<td>Organelle segmentation (EM)</td>
+<td>Manual tracing</td>
+<td>Hours/image</td>
+<td>DeepImageJ models</td>
+<td>Seconds/image</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>The Philosophical Shift</h2>
+<blockquote>
+<p><strong>Classical:</strong> You describe what an object looks like using rules (bright pixels, round shape, minimum size).</p>
+<p><strong>AI:</strong> You show examples of what an object looks like, and the model learns the rules.</p>
+</blockquote>
+<p>This is why AI works where rules fail — because many biological structures are too complex, variable, or context-dependent to capture with explicit rules.</p>
+<hr />
+<h2>When to Still Use Classical Methods</h2>
+<p>AI isn't always necessary. Stick with classical approaches when:</p>
+<ul>
+<li>Your objects are well-separated with high contrast</li>
+<li>Your pipeline is already validated and published</li>
+<li>You need deterministic, mathematically defined operations</li>
+<li>You're doing simple intensity measurements (not segmentation)</li>
+<li>You need maximum speed with minimal dependencies</li>
+</ul>
+<p>The best modern pipelines often <strong>combine</strong> both: AI for segmentation, classical tools for measurement.</p>
+<hr />
+<p><strong>Next:</strong> <a href="03-deep-learning-in-10-minutes-no-math-required.html" class="internal-link">03 - Deep Learning in 10 Minutes (No Math Required)</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

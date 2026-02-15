@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 - StarDist - Nuclei Segmentation That Actually Works</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>05 - StarDist — Nuclei Segmentation That Actually Works</h1>
+<p><a href="../../search.html?tag=segmentation" class="tag">#segmentation</a> <a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=stardist" class="tag">#stardist</a> <a href="../../search.html?tag=nuclei" class="tag">#nuclei</a></p>
+<hr />
+<h2>Overview</h2>
+<p>StarDist is a deep learning method for detecting and segmenting star-convex shaped objects — primarily nuclei. It is the single most impactful AI tool for anyone who counts or measures nuclei in microscopy images.</p>
+<p>🔗 <strong>Paper:</strong> Schmidt et al., "Cell Detection with Star-Convex Polygons" (MICCAI 2018)<br />
+🔗 <strong>GitHub:</strong> <a href="https://github.com/stardist/stardist">https://github.com/stardist/stardist</a><br />
+🔗 <strong>Documentation:</strong> <a href="https://stardist.net">https://stardist.net</a></p>
+<hr />
+<h2>Before &amp; After</h2>
+<h3>The Old Way</h3>
+<pre><code>Open image → 8-bit → Subtract Background → Gaussian Blur →
+Auto Threshold (Otsu) → Convert to Mask → Fill Holes → Watershed →
+Analyze Particles (size=50-5000, circ=0.5-1.0) → Pray
+</code></pre>
+<p><strong>Result:</strong> ~70% accuracy on dense tissue. Watershed splits some nuclei, merges others. Hours of manual correction.</p>
+<h3>The New Way</h3>
+<pre><code>Open image → Plugins → StarDist → StarDist 2D →
+Select &quot;Versatile (fluorescent nuclei)&quot; → Run
+</code></pre>
+<p><strong>Result:</strong> ~95% accuracy. Individual ROIs for each nucleus. Done in seconds.</p>
+<hr />
+<h2>Pre-Trained Models</h2>
+<p>StarDist comes with models already trained on large datasets:</p>
+<table>
+<thead>
+<tr>
+<th>Model Name</th>
+<th>Best For</th>
+<th>Training Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Versatile (fluorescent nuclei)</strong></td>
+<td>DAPI, Hoechst, any fluorescent nuclear stain</td>
+<td>Diverse fluorescence images</td>
+</tr>
+<tr>
+<td><strong>Versatile (H&amp;E nuclei)</strong></td>
+<td>Histology sections with H&amp;E staining</td>
+<td>H&amp;E stained tissue</td>
+</tr>
+<tr>
+<td><strong>DSB 2018</strong></td>
+<td>Data Science Bowl 2018 nuclei</td>
+<td>Mixed modalities</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<div class="admonition-title">Start with "Versatile (fluorescent nuclei)"</div>
+<div class="admonition-content">
+This model works surprisingly well across many fluorescent nuclear stains and imaging conditions. Try it first before considering custom training.
+</div></div>
+
+<hr />
+<h2>Using StarDist in Fiji (GUI)</h2>
+<h3>Basic Usage</h3>
+<ol>
+<li>Open your image</li>
+<li><strong>Plugins → StarDist → StarDist 2D</strong></li>
+<li>Select your model (e.g., "Versatile (fluorescent nuclei)")</li>
+<li>Adjust parameters if needed:</li>
+<li><strong>Percentile Low / High:</strong> Normalizes input intensity (defaults usually fine)</li>
+<li><strong>Probability Threshold:</strong> Higher = more conservative detection (fewer false positives)</li>
+<li><strong>Overlap Threshold (NMS):</strong> How much overlap is allowed between detections</li>
+<li>Check <strong>"Label Image"</strong> to get a labeled mask</li>
+<li>Check <strong>"ROI Manager"</strong> to get individual ROIs</li>
+<li>Click <strong>OK</strong></li>
+</ol>
+<h3>Parameter Tuning Guide</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Raise If...</th>
+<th>Lower If...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Probability Threshold</td>
+<td>0.5</td>
+<td>Too many false detections</td>
+<td>Missing real nuclei</td>
+</tr>
+<tr>
+<td>NMS Threshold</td>
+<td>0.3</td>
+<td>Nearby objects are being merged</td>
+<td>Single objects detected as duplicates</td>
+</tr>
+</tbody>
+</table>
+<h3>Using StarDist via Macro</h3>
+<pre><code class="language-javascript">// StarDist 2D macro command
+run(&quot;Command From Macro&quot;, &quot;command=[de.csbdresden.stardist.StarDist2D], &quot;
+    + &quot;args=['input':'&quot; + getTitle() + &quot;', &quot;
+    + &quot;'modelChoice':'Versatile (fluorescent nuclei)', &quot;
+    + &quot;'normalizeInput':'true', &quot;
+    + &quot;'percentileBottom':'1.0', &quot;
+    + &quot;'percentileTop':'99.8', &quot;
+    + &quot;'probThresh':'0.5', &quot;
+    + &quot;'nmsThresh':'0.3', &quot;
+    + &quot;'outputType':'Both', &quot;
+    + &quot;'nTiles':'1', &quot;
+    + &quot;'excludeBoundary':'2', &quot;
+    + &quot;'roiPosition':'Automatic', &quot;
+    + &quot;'verbose':'false', &quot;
+    + &quot;'showCsb498deProgress':'true', &quot;
+    + &quot;'showProbAndDist':'false'], &quot;
+    + &quot;process=[false]&quot;);
+</code></pre>
+<h3>Batch Processing with StarDist</h3>
+<pre><code class="language-javascript">// Batch process all .tif files in a directory
+inputDir = getDirectory(&quot;Choose input directory&quot;);
+outputDir = getDirectory(&quot;Choose output directory&quot;);
+list = getFileList(inputDir);
+
+for (i = 0; i &lt; list.length; i++) {
+    if (endsWith(list[i], &quot;.tif&quot;)) {
+        open(inputDir + list[i]);
+
+        // Run StarDist
+        run(&quot;Command From Macro&quot;, &quot;command=[de.csbdresden.stardist.StarDist2D], &quot;
+            + &quot;args=['input':'&quot; + getTitle() + &quot;', &quot;
+            + &quot;'modelChoice':'Versatile (fluorescent nuclei)', &quot;
+            + &quot;'normalizeInput':'true', &quot;
+            + &quot;'probThresh':'0.5', &quot;
+            + &quot;'nmsThresh':'0.3', &quot;
+            + &quot;'outputType':'ROI Manager'], &quot;
+            + &quot;process=[false]&quot;);
+
+        // Save results
+        roiManager(&quot;Save&quot;, outputDir + replace(list[i], &quot;.tif&quot;, &quot;_ROIs.zip&quot;));
+        run(&quot;Set Measurements...&quot;, &quot;area mean integrated redirect=None decimal=3&quot;);
+        roiManager(&quot;Measure&quot;);
+        saveAs(&quot;Results&quot;, outputDir + replace(list[i], &quot;.tif&quot;, &quot;_results.csv&quot;));
+
+        // Clean up
+        roiManager(&quot;Reset&quot;);
+        run(&quot;Clear Results&quot;);
+        close(&quot;*&quot;);
+    }
+}
+print(&quot;Batch processing complete!&quot;);
+</code></pre>
+<hr />
+<h2>StarDist 3D</h2>
+<p>For Z-stacks and 3D volumes:</p>
+<ol>
+<li>Open your 3D stack</li>
+<li><strong>Plugins → StarDist → StarDist 3D</strong></li>
+<li>Select a 3D model</li>
+<li>Run</li>
+</ol>
+<div class="admonition note">
+<div class="admonition-title">3D considerations</div>
+<div class="admonition-content">
+- 3D models are more resource-intensive — GPU recommended
+- Consider anisotropy: if your Z-spacing differs from XY pixel size, adjust accordingly
+- The "Versatile (fluorescent nuclei) 3D" model is available but less tested than the 2D version
+</div></div>
+
+<hr />
+<h2>Training Custom StarDist Models</h2>
+<p>If the pre-trained models don't work well on your specific data:</p>
+<h3>Quick Route: ZeroCostDL4Mic</h3>
+<p>Use the StarDist notebook in ZeroCostDL4Mic on Google Colab — no local GPU needed.<br />
+🔗 <a href="https://github.com/HenriquesLab/ZeroCostDL4Mic">https://github.com/HenriquesLab/ZeroCostDL4Mic</a></p>
+<h3>What You Need for Training</h3>
+<ul>
+<li>10-50 annotated images (more is better)</li>
+<li>Annotations as label masks (each object has a unique integer value)</li>
+<li>Tools for annotation: Fiji ROI Manager, QuPath, Labkit, or napari</li>
+</ul>
+<h3>Annotation Tips</h3>
+<ul>
+<li>Annotate diverse examples (different densities, intensities, edge cases)</li>
+<li>Include images where objects are touching</li>
+<li>Don't skip ambiguous cases — the model needs to learn those too</li>
+<li>Consistency matters more than perfection</li>
+</ul>
+<hr />
+<h2>Integration with Other Tools</h2>
+<p>StarDist ROIs work with the standard Fiji ecosystem:</p>
+<ul>
+<li><strong>ROI Manager:</strong> All detections appear as ROIs you can edit, measure, delete</li>
+<li><strong>Analyze Particles:</strong> Not needed — StarDist replaces it for the segmentation step</li>
+<li><strong>TrackMate:</strong> StarDist can serve as the detector — see <a href="../03-core-tools/09-trackmate-with-ai-detectors.html" class="internal-link">09 - TrackMate with AI Detectors</a></li>
+<li><strong>Measurement:</strong> Use standard <code>Set Measurements</code> + <code>Measure</code> on StarDist ROIs</li>
+</ul>
+<hr />
+<h2>Tips and Tricks</h2>
+<ol>
+<li><strong>Tiling for large images:</strong> StarDist can split large images into tiles for processing. Increase <code>nTiles</code> if you get memory errors.</li>
+<li><strong>Multi-channel images:</strong> StarDist expects a single channel. Extract the nuclear channel first.</li>
+<li><strong>Probability maps:</strong> Enable "Show Probability and Distances" to see where the model is confident vs. uncertain — useful for debugging.</li>
+<li><strong>Boundary exclusion:</strong> Set <code>excludeBoundary</code> to remove partial objects at image edges.</li>
+</ol>
+<hr />
+<p><strong>Hands-on:</strong> <a href="../04-hands-on-labs/lab-01-stardist-nuclei-counting.html" class="internal-link">Lab 01 - StarDist Nuclei Counting</a><br />
+<strong>Next:</strong> <a href="06-cellpose-the-universal-cell-segmenter.html" class="internal-link">06 - Cellpose - The Universal Cell Segmenter</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

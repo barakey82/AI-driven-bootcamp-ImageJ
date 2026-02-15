@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 - The Classical Toolkit (What You Already Know)</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>01 - The Classical Toolkit (What You Already Know)</h1>
+<p><a href="../../search.html?tag=classical" class="tag">#classical</a> <a href="../../search.html?tag=foundations" class="tag">#foundations</a> <a href="../../search.html?tag=fiji" class="tag">#fiji</a></p>
+<hr />
+<h2>Overview</h2>
+<p>Before we dive into AI, let's acknowledge and document the classical workflow that has served the microscopy community for decades. Understanding what these tools do well — and where they break down — is essential context for appreciating why deep learning changed everything.</p>
+<hr />
+<h2>The Classical ImageJ Workflow</h2>
+<p>Every image analysis pipeline you've ever built probably followed this pattern:</p>
+<pre><code>Raw Image
+    → Pre-processing (filters, background subtraction)
+        → Segmentation (thresholding)
+            → Post-processing (watershed, morphological operations)
+                → Measurement (Analyze Particles)
+                    → Results Table / ROI Manager
+</code></pre>
+<h3>Step 1: Pre-Processing</h3>
+<p><strong>Goal:</strong> Improve signal-to-noise ratio and remove artifacts.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Menu Path</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gaussian Blur</td>
+<td>Process → Filters → Gaussian Blur</td>
+<td>Smooths noise, loses sharp edges</td>
+</tr>
+<tr>
+<td>Median Filter</td>
+<td>Process → Filters → Median</td>
+<td>Removes salt-and-pepper noise, preserves edges better</td>
+</tr>
+<tr>
+<td>Rolling Ball BG Subtraction</td>
+<td>Process → Subtract Background</td>
+<td>Removes uneven illumination</td>
+</tr>
+<tr>
+<td>Enhance Contrast</td>
+<td>Process → Enhance Contrast</td>
+<td>Stretches histogram for better visibility</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Macro example — basic pre-processing:</strong></p>
+<pre><code class="language-javascript">// Classic pre-processing pipeline
+run(&quot;Subtract Background...&quot;, &quot;rolling=50&quot;);
+run(&quot;Median...&quot;, &quot;radius=2&quot;);
+run(&quot;Enhance Contrast...&quot;, &quot;saturated=0.3&quot;);
+</code></pre>
+<h3>Step 2: Segmentation (Thresholding)</h3>
+<p><strong>Goal:</strong> Convert grayscale image to binary (object vs. background).</p>
+<p><strong>Common thresholding algorithms:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Best For</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Otsu</td>
+<td>Bimodal histograms (clear foreground/background)</td>
+<td>Fails with uneven illumination</td>
+</tr>
+<tr>
+<td>Triangle</td>
+<td>Skewed histograms</td>
+<td>Less effective on symmetric distributions</td>
+</tr>
+<tr>
+<td>Li</td>
+<td>Minimizing cross-entropy</td>
+<td>Can be unpredictable</td>
+</tr>
+<tr>
+<td>Manual</td>
+<td>When you know your data</td>
+<td>Not reproducible, not scalable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Macro example:</strong></p>
+<pre><code class="language-javascript">// Auto-threshold with Otsu
+run(&quot;8-bit&quot;);
+setAutoThreshold(&quot;Otsu dark&quot;);
+run(&quot;Convert to Mask&quot;);
+</code></pre>
+<h3>Step 3: Post-Processing</h3>
+<p><strong>Goal:</strong> Clean up the binary mask — fill holes, remove debris, separate touching objects.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What It Does</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fill Holes</td>
+<td>Process → Binary → Fill Holes</td>
+<td>Only fills fully enclosed holes</td>
+</tr>
+<tr>
+<td>Open / Close</td>
+<td>Process → Binary → Open/Close</td>
+<td>Removes small objects / bridges gaps</td>
+</tr>
+<tr>
+<td>Erode / Dilate</td>
+<td>Process → Binary → Erode/Dilate</td>
+<td>Shrinks / expands objects</td>
+</tr>
+<tr>
+<td><strong>Watershed</strong></td>
+<td>Process → Binary → Watershed</td>
+<td>Attempts to split touching objects</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The Watershed problem:</strong></p>
+<p>Watershed is the classical solution for separating touching objects. It works by finding the "ridgeline" between intensity peaks.</p>
+<p><strong>When it works:</strong> Fairly round, uniformly-sized objects with clear intensity gradients.</p>
+<p><strong>When it fails:</strong><br />
+- Irregularly shaped cells<br />
+- Objects with uneven intensity<br />
+- Highly overlapping objects<br />
+- Objects of very different sizes</p>
+<pre><code class="language-javascript">// Classic post-processing
+run(&quot;Fill Holes&quot;);
+run(&quot;Watershed&quot;);
+</code></pre>
+<h3>Step 4: Measurement</h3>
+<p><strong>Goal:</strong> Count objects and measure their properties.</p>
+<pre><code class="language-javascript">// Set measurements and analyze
+run(&quot;Set Measurements...&quot;, &quot;area mean perimeter shape integrated redirect=None decimal=3&quot;);
+run(&quot;Analyze Particles...&quot;, &quot;size=100-Infinity circularity=0.3-1.00 show=Outlines display clear summarize add&quot;);
+</code></pre>
+<p><strong>Analyze Particles parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>What It Controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Size (min-max)</td>
+<td>Filter objects by area in pixels²</td>
+</tr>
+<tr>
+<td>Circularity (0-1)</td>
+<td>Filter by roundness (1 = perfect circle)</td>
+</tr>
+<tr>
+<td>Show</td>
+<td>What to display (Outlines, Masks, etc.)</td>
+</tr>
+<tr>
+<td>Add</td>
+<td>Add detected objects to ROI Manager</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>A Complete Classical Macro</h2>
+<p>Here's a typical "old school" macro that most Fiji users would recognize:</p>
+<pre><code class="language-javascript">// ============================================
+// Classical Nuclei Counting Pipeline
+// ============================================
+
+// Pre-processing
+run(&quot;Duplicate...&quot;, &quot;title=working&quot;);
+run(&quot;8-bit&quot;);
+run(&quot;Subtract Background...&quot;, &quot;rolling=50&quot;);
+run(&quot;Gaussian Blur...&quot;, &quot;sigma=2&quot;);
+
+// Segmentation
+setAutoThreshold(&quot;Otsu dark&quot;);
+run(&quot;Convert to Mask&quot;);
+
+// Post-processing
+run(&quot;Fill Holes&quot;);
+run(&quot;Open&quot;);
+run(&quot;Watershed&quot;);
+
+// Measurement
+run(&quot;Set Measurements...&quot;, &quot;area mean perimeter shape redirect=None decimal=3&quot;);
+run(&quot;Analyze Particles...&quot;, &quot;size=50-5000 circularity=0.5-1.00 show=Outlines display clear summarize add&quot;);
+
+// Report
+print(&quot;Total nuclei detected: &quot; + nResults);
+</code></pre>
+<div class="admonition important">
+<div class="admonition-title">This macro is good enough</div>
+<div class="admonition-content">
+For simple, high-contrast, well-separated objects, this workflow is still perfectly fine. AI doesn't replace it for trivial cases — it replaces it for the cases where this fails.
+</div></div>
+
+<hr />
+<h2>What This Workflow Does Well</h2>
+<ul>
+<li>Fast and deterministic — same parameters always give same results</li>
+<li>No training data required</li>
+<li>Runs on any computer, no GPU needed</li>
+<li>Well-documented, decades of literature</li>
+<li>Fully reproducible when parameters are recorded</li>
+</ul>
+<h2>Where It Falls Apart</h2>
+<p>These are the exact cases that motivated the AI revolution. We'll examine each in detail in <a href="02-why-classical-methods-hit-a-wall.html" class="internal-link">02 - Why Classical Methods Hit a Wall</a>.</p>
+<ul>
+<li>Touching/overlapping objects that watershed can't separate</li>
+<li>Low signal-to-noise images</li>
+<li>Irregular cell shapes with no clear boundary</li>
+<li>Heterogeneous staining intensity</li>
+<li>Large datasets where manual threshold tuning doesn't scale</li>
+<li>3D volumes with anisotropic resolution</li>
+<li>Time-lapse data with varying conditions across frames</li>
+</ul>
+<hr />
+<h2>Key Takeaway</h2>
+<blockquote>
+<p>The classical toolkit is a <strong>rule-based</strong> approach: you define explicit rules (brightness thresholds, size filters, shape criteria) and the computer follows them. AI introduces a <strong>learning-based</strong> approach: you show the computer examples, and it learns the rules itself.</p>
+</blockquote>
+<hr />
+<p><strong>Next:</strong> <a href="02-why-classical-methods-hit-a-wall.html" class="internal-link">02 - Why Classical Methods Hit a Wall</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

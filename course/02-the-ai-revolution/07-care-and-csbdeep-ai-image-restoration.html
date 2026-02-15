@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 - CARE and CSBDeep - AI Image Restoration</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>07 - CARE and CSBDeep — AI Image Restoration</h1>
+<p><a href="../../search.html?tag=denoising" class="tag">#denoising</a> <a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=care" class="tag">#care</a> <a href="../../search.html?tag=restoration" class="tag">#restoration</a></p>
+<hr />
+<h2>Overview</h2>
+<p>CARE (Content-Aware image REstoration) uses deep learning to restore degraded microscopy images. It can denoise, recover resolution, and even correct for axial anisotropy in 3D data — all while preserving biological structure that classical filters would destroy.</p>
+<p>🔗 <strong>Paper:</strong> Weigert et al., "Content-aware image restoration: pushing the limits of fluorescence microscopy" (Nature Methods, 2018)<br />
+🔗 <strong>CSBDeep GitHub:</strong> <a href="https://github.com/CSBDeep/CSBDeep">https://github.com/CSBDeep/CSBDeep</a><br />
+🔗 <strong>Fiji Plugin:</strong> Available via the CSBDeep update site</p>
+<hr />
+<h2>Before &amp; After</h2>
+<h3>The Old Way (Denoising)</h3>
+<pre><code>Open noisy image → Process → Filters → Gaussian Blur (σ=2) →
+Accept that fine structures are now gone
+</code></pre>
+<p><strong>Result:</strong> Noise reduced, but edges blurred and small features lost. Information destroyed.</p>
+<h3>The New Way (CARE)</h3>
+<pre><code>Open noisy image → Plugins → CSBDeep → Run your CARE model
+</code></pre>
+<p><strong>Result:</strong> Noise removed while fine structures are preserved or even recovered. Information restored.</p>
+<hr />
+<h2>The CARE Family of Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Training Data Needed</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CARE</strong></td>
+<td>Paired noisy/clean images</td>
+<td>Maximum quality restoration</td>
+</tr>
+<tr>
+<td><strong>Noise2Void (N2V)</strong></td>
+<td>Only noisy images (no pairs needed!)</td>
+<td>When clean reference data is unavailable</td>
+</tr>
+<tr>
+<td><strong>Noise2Noise</strong></td>
+<td>Pairs of noisy images (no clean needed)</td>
+<td>When you can capture two independent noisy acquisitions</td>
+</tr>
+</tbody>
+</table>
+<h3>How to Get Training Pairs for CARE</h3>
+<p>The standard approach:</p>
+<ol>
+<li><strong>High-SNR reference:</strong> Capture images at high laser power / long exposure (slow, phototoxic, but clean)</li>
+<li><strong>Low-SNR input:</strong> Capture the same field at low laser power / short exposure (fast, gentle, but noisy)</li>
+<li><strong>Train CARE</strong> to predict the high-SNR from the low-SNR</li>
+<li><strong>Apply to all future data</strong> captured at low-SNR settings</li>
+</ol>
+<p><strong>Why this is powerful:</strong> After training, you can image at 10x lower laser power (reducing phototoxicity) and computationally recover the quality.</p>
+<h3>Noise2Void: When You Don't Have Clean Images</h3>
+<p>If you can't acquire paired data, Noise2Void trains on the noisy images themselves:</p>
+<pre><code>Principle: A pixel's noise is independent of its neighbors' noise,
+           but its signal is correlated with neighbors.
+
+N2V learns to predict each pixel from its neighborhood,
+which learns the signal structure while ignoring pixel-independent noise.
+</code></pre>
+<hr />
+<h2>Using CARE/CSBDeep in Fiji</h2>
+<h3>Running a Pre-Trained Model</h3>
+<ol>
+<li>Open your image</li>
+<li><strong>Plugins → CSBDeep → Run your network</strong></li>
+<li>Select your trained model file (.zip)</li>
+<li>Adjust tiling if needed (for large images)</li>
+<li>Click OK</li>
+</ol>
+<h3>Available Pre-Trained Models</h3>
+<p>Check the BioImage Model Zoo for CARE models:<br />
+🔗 <a href="https://bioimage.io/#/?tags=denoising">https://bioimage.io/#/?tags=denoising</a></p>
+<p>Also check the CSBDeep examples:<br />
+🔗 <a href="https://csbdeep.bioimagecomputing.com/examples/">https://csbdeep.bioimagecomputing.com/examples/</a></p>
+<h3>Running Noise2Void in Fiji</h3>
+<p>Noise2Void is also available via the CSBDeep update site:</p>
+<ol>
+<li><strong>Plugins → CSBDeep → N2V → train + predict</strong></li>
+<li>Select your noisy image(s)</li>
+<li>Set training parameters (epochs, batch size)</li>
+<li>Train (this takes time, GPU recommended)</li>
+<li>Apply to your data</li>
+</ol>
+<hr />
+<h2>Training CARE Models</h2>
+<h3>Using ZeroCostDL4Mic (Recommended for Beginners)</h3>
+<p>🔗 <a href="https://github.com/HenriquesLab/ZeroCostDL4Mic">https://github.com/HenriquesLab/ZeroCostDL4Mic</a></p>
+<p>The CARE and N2V notebooks on Google Colab let you:<br />
+1. Upload your training pairs<br />
+2. Configure training<br />
+3. Train on Google's free GPU<br />
+4. Download the model<br />
+5. Run it in Fiji</p>
+<h3>Using Python</h3>
+<pre><code class="language-python">from csbdeep.models import CARE
+from csbdeep.data import RawData, create_patches
+
+# Prepare training data
+raw_data = RawData.from_folder(
+    basepath='training_data',
+    source_dirs=['low_snr'],     # Noisy images
+    target_dir='high_snr',       # Clean reference images
+    axes='YX'
+)
+
+# Create training patches
+X, Y, XY_axes = create_patches(
+    raw_data,
+    patch_size=(64, 64),
+    n_patches_per_image=128
+)
+
+# Train model
+model = CARE(config=None, name='my_denoising_model', basedir='models')
+model.train(X, Y)
+
+# Apply to new image
+from skimage import io
+img = io.imread('noisy_image.tif')
+restored = model.predict(img, axes='YX')
+io.imsave('restored.tif', restored)
+</code></pre>
+<h3>Training Noise2Void (No Pairs Needed)</h3>
+<pre><code class="language-python">from n2v.models import N2VConfig, N2V
+from n2v.internals.N2V_DataGenerator import N2V_DataGenerator
+
+# Generate training data from noisy images only
+datagen = N2V_DataGenerator()
+patches = datagen.generate_patches_from_list(
+    imgs,
+    shape=(64, 64)
+)
+
+# Configure and train
+config = N2VConfig(
+    X=patches,
+    unet_kern_size=3,
+    train_steps_per_epoch=200,
+    train_epochs=100,
+    train_batch_size=64
+)
+model = N2V(config, 'n2v_model', basedir='models')
+model.train(patches[:int(0.9*len(patches))],
+            patches[int(0.9*len(patches)):])
+</code></pre>
+<hr />
+<h2>Practical Applications</h2>
+<h3>Application 1: Reduce Phototoxicity in Live Imaging</h3>
+<p>Train CARE on high/low exposure pairs → image live cells at 10-20% of normal laser power → restore computationally. Cells stay alive longer, you get clean data.</p>
+<h3>Application 2: Increase Temporal Resolution</h3>
+<p>Image faster (shorter exposure = more frames per second) → use CARE to restore quality → achieve both high speed AND high quality.</p>
+<h3>Application 3: Fix Axial Resolution in 3D</h3>
+<p>3D confocal data has worse resolution in Z than in XY. CARE can be trained to computationally improve Z resolution, making 3D data more isotropic.</p>
+<h3>Application 4: Pre-processing for Segmentation</h3>
+<p>Denoise first with CARE → then run StarDist or Cellpose on the restored image → better segmentation from cleaner input.</p>
+<pre><code>Noisy image → CARE → Clean image → StarDist → Better ROIs
+</code></pre>
+<hr />
+<h2>Important Considerations</h2>
+<h3>What CARE Cannot Do</h3>
+<ul>
+<li>It cannot recover information that was never captured (no "enhance" like in movies)</li>
+<li>It may introduce subtle artifacts if applied outside its training domain</li>
+<li>Overfitting is possible — always validate on held-out data</li>
+</ul>
+<h3>Best Practices</h3>
+<ul>
+<li>Train on diverse images (different intensities, densities, conditions)</li>
+<li>Validate quantitatively: compare measurements from restored vs. original clean images</li>
+<li>Document your model and training data for reproducibility</li>
+<li>Don't apply a model trained on one microscope/staining to completely different data without validation</li>
+</ul>
+<h3>Quality Control</h3>
+<ul>
+<li>Always compare restored images against ground truth</li>
+<li>Check that intensity relationships are preserved (important for quantification)</li>
+<li>Look for hallucinated structures (rare but possible in extreme noise)</li>
+</ul>
+<hr />
+<p><strong>Hands-on:</strong> <a href="../04-hands-on-labs/lab-03-denoising-with-care.html" class="internal-link">Lab 03 - Denoising with CARE</a><br />
+<strong>Next:</strong> <a href="08-deepimagej-and-the-bioimage-model-zoo.html" class="internal-link">08 - DeepImageJ and the BioImage Model Zoo</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

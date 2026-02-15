@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 - CLIJ - GPU-Accelerated Processing</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>10 - CLIJ — GPU-Accelerated Processing</h1>
+<p><a href="../../search.html?tag=gpu" class="tag">#gpu</a> <a href="../../search.html?tag=clij" class="tag">#clij</a> <a href="../../search.html?tag=performance" class="tag">#performance</a> <a href="../../search.html?tag=processing" class="tag">#processing</a></p>
+<hr />
+<h2>Overview</h2>
+<p>CLIJ (and its successors CLIJ2, CLIJx) moves image processing operations from your CPU to your GPU (graphics card). Operations that take minutes on CPU can complete in milliseconds on GPU. Essential for 3D data, large datasets, and batch processing.</p>
+<p>🔗 <strong>CLIJ2:</strong> <a href="https://clij.github.io">https://clij.github.io</a><br />
+🔗 <strong>Paper:</strong> Haase et al., "CLIJ: GPU-accelerated image processing for everyone" (Nature Methods, 2020)</p>
+<hr />
+<h2>Why GPU Matters</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Image Size</th>
+<th>CPU Time</th>
+<th>GPU Time</th>
+<th>Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gaussian Blur 3D</td>
+<td>512×512×100</td>
+<td>12 sec</td>
+<td>0.05 sec</td>
+<td>~240×</td>
+</tr>
+<tr>
+<td>Top-Hat Filter</td>
+<td>2048×2048</td>
+<td>3 sec</td>
+<td>0.02 sec</td>
+<td>~150×</td>
+</tr>
+<tr>
+<td>3D Watershed</td>
+<td>512×512×100</td>
+<td>45 sec</td>
+<td>0.5 sec</td>
+<td>~90×</td>
+</tr>
+<tr>
+<td>Mean filter 3D</td>
+<td>1024×1024×50</td>
+<td>25 sec</td>
+<td>0.1 sec</td>
+<td>~250×</td>
+</tr>
+</tbody>
+</table>
+<p>These differences become critical when processing hundreds of images or iterating on parameters.</p>
+<hr />
+<h2>Using CLIJ2 in Fiji</h2>
+<h3>Basic Operations</h3>
+<pre><code class="language-javascript">// Initialize CLIJ2
+run(&quot;CLIJ2 Macro Extensions&quot;, &quot;cl_device=&quot;);
+Ext.CLIJ2_clear();
+
+// Push image to GPU
+Ext.CLIJ2_push(&quot;input_image&quot;);
+
+// Gaussian blur on GPU
+Ext.CLIJ2_gaussianBlur3D(&quot;input_image&quot;, &quot;blurred&quot;, 2, 2, 2);
+
+// Threshold on GPU
+Ext.CLIJ2_thresholdOtsu(&quot;blurred&quot;, &quot;binary&quot;);
+
+// Pull result back from GPU
+Ext.CLIJ2_pull(&quot;binary&quot;);
+
+// Clean up GPU memory
+Ext.CLIJ2_clear();
+</code></pre>
+<h3>A Complete CLIJ2 Pipeline</h3>
+<pre><code class="language-javascript">// GPU-accelerated nuclei analysis pipeline
+run(&quot;CLIJ2 Macro Extensions&quot;, &quot;cl_device=&quot;);
+Ext.CLIJ2_clear();
+
+// Push to GPU
+Ext.CLIJ2_push(&quot;raw_image&quot;);
+
+// Background subtraction (GPU)
+Ext.CLIJ2_topHatBox(&quot;raw_image&quot;, &quot;bg_subtracted&quot;, 15, 15, 0);
+
+// Gaussian blur (GPU)
+Ext.CLIJ2_gaussianBlur2D(&quot;bg_subtracted&quot;, &quot;smoothed&quot;, 1, 1);
+
+// Threshold (GPU)
+Ext.CLIJ2_thresholdOtsu(&quot;smoothed&quot;, &quot;binary&quot;);
+
+// Connected component labeling (GPU)
+Ext.CLIJ2_connectedComponentsLabelingBox(&quot;binary&quot;, &quot;labels&quot;);
+
+// Exclude small objects (GPU)
+Ext.CLIJ2_excludeLabelsWithValuesOutOfRange(
+    &quot;area_map&quot;, &quot;labels&quot;, &quot;filtered&quot;, 100, 10000);
+
+// Pull result
+Ext.CLIJ2_pull(&quot;labels&quot;);
+Ext.CLIJ2_clear();
+</code></pre>
+<hr />
+<h2>CLIJ2 + AI: Combined Workflows</h2>
+<p>Use CLIJ2 for fast pre-processing, then hand off to AI for segmentation:</p>
+<pre><code class="language-javascript">// Fast pre-processing on GPU, then StarDist
+run(&quot;CLIJ2 Macro Extensions&quot;, &quot;cl_device=&quot;);
+Ext.CLIJ2_clear();
+Ext.CLIJ2_push(&quot;raw&quot;);
+
+// GPU pre-processing
+Ext.CLIJ2_subtractBackground2D(&quot;raw&quot;, &quot;bg_sub&quot;, 50, 50);
+Ext.CLIJ2_gaussianBlur2D(&quot;bg_sub&quot;, &quot;smooth&quot;, 1.0, 1.0);
+Ext.CLIJ2_pull(&quot;smooth&quot;);
+Ext.CLIJ2_clear();
+
+// Now run StarDist on the cleaned image
+selectWindow(&quot;smooth&quot;);
+run(&quot;Command From Macro&quot;, &quot;command=[de.csbdresden.stardist.StarDist2D], &quot;
+    + &quot;args=['input':'smooth', &quot;
+    + &quot;'modelChoice':'Versatile (fluorescent nuclei)', &quot;
+    + &quot;'normalizeInput':'true', &quot;
+    + &quot;'probThresh':'0.5', &quot;
+    + &quot;'nmsThresh':'0.3', &quot;
+    + &quot;'outputType':'ROI Manager'], &quot;
+    + &quot;process=[false]&quot;);
+</code></pre>
+<hr />
+<h2>Key CLIJ2 Operations Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Classical (CPU)</th>
+<th>CLIJ2 Equivalent (GPU)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>run("Gaussian Blur...", "sigma=2")</code></td>
+<td><code>Ext.CLIJ2_gaussianBlur2D(in, out, 2, 2)</code></td>
+</tr>
+<tr>
+<td><code>run("Subtract Background...", "rolling=50")</code></td>
+<td><code>Ext.CLIJ2_topHatBox(in, out, 50, 50, 0)</code></td>
+</tr>
+<tr>
+<td><code>run("Median...", "radius=2")</code></td>
+<td><code>Ext.CLIJ2_median2DBox(in, out, 2, 2)</code></td>
+</tr>
+<tr>
+<td><code>setAutoThreshold("Otsu")</code></td>
+<td><code>Ext.CLIJ2_thresholdOtsu(in, out)</code></td>
+</tr>
+<tr>
+<td><code>run("Watershed")</code></td>
+<td><code>Ext.CLIJ2_watershed(in, out)</code></td>
+</tr>
+<tr>
+<td><code>run("Analyze Particles...")</code></td>
+<td><code>Ext.CLIJ2_connectedComponentsLabelingBox(in, out)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>GPU Requirements</h2>
+<ul>
+<li><strong>Any OpenCL-compatible GPU</strong> works (NVIDIA, AMD, Intel integrated)</li>
+<li>NVIDIA GPUs with CUDA are fastest</li>
+<li>Even integrated Intel GPUs provide significant speedup over CPU</li>
+<li>CLIJ2 automatically selects the best available GPU</li>
+</ul>
+<p>Check your GPU:</p>
+<pre><code class="language-javascript">run(&quot;CLIJ2 Macro Extensions&quot;, &quot;cl_device=&quot;);
+Ext.CLIJ2_getGPUProperties(gpu_name, global_mem, max_mem);
+print(&quot;GPU: &quot; + gpu_name);
+print(&quot;Memory: &quot; + global_mem + &quot; bytes&quot;);
+</code></pre>
+<hr />
+<p><strong>Next:</strong> <a href="11-labkit-interactive-machine-learning-in-fiji.html" class="internal-link">11 - LabKit - Interactive Machine Learning in Fiji</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

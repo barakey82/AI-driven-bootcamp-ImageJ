@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 - PyImageJ - Fiji Meets Python</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>12 - PyImageJ — Fiji Meets Python</h1>
+<p><a href="../../search.html?tag=python" class="tag">#python</a> <a href="../../search.html?tag=pyimagej" class="tag">#pyimagej</a> <a href="../../search.html?tag=advanced" class="tag">#advanced</a> <a href="../../search.html?tag=pipeline" class="tag">#pipeline</a></p>
+<hr />
+<h2>Overview</h2>
+<p>PyImageJ lets you run the full ImageJ/Fiji ecosystem from within Python. This means you can combine Python's AI libraries (PyTorch, TensorFlow, Cellpose) with ImageJ's established image processing tools in a single script.</p>
+<p>🔗 <strong>Documentation:</strong> <a href="https://pyimagej.readthedocs.io">https://pyimagej.readthedocs.io</a><br />
+🔗 <strong>GitHub:</strong> <a href="https://github.com/imagej/pyimagej">https://github.com/imagej/pyimagej</a></p>
+<hr />
+<h2>Installation</h2>
+<pre><code class="language-bash">pip install pyimagej
+# For full Fiji functionality:
+pip install pyimagej[all]
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-python">import imagej
+
+# Initialize with Fiji (first run downloads ~1GB)
+ij = imagej.init('sc.fiji:fiji')
+
+# Open an image
+img = ij.io().open('my_image.tif')
+
+# Run any ImageJ command
+ij.py.run_macro('run(&quot;Gaussian Blur...&quot;, &quot;sigma=2&quot;)')
+
+# Convert between numpy and ImageJ
+import numpy as np
+np_array = ij.py.from_java(img)     # ImageJ → numpy
+java_img = ij.py.to_java(np_array)   # numpy → ImageJ
+</code></pre>
+<h2>Key Use Cases</h2>
+<p><strong>Use Case 1:</strong> Pre-process in ImageJ, segment in Python</p>
+<pre><code class="language-python"># Use ImageJ's rolling ball background subtraction
+ij.py.run_macro('run(&quot;Subtract Background...&quot;, &quot;rolling=50&quot;)')
+np_img = ij.py.from_java(ij.py.active_dataset())
+
+# Then run Cellpose
+from cellpose import models
+model = models.Cellpose(model_type='cyto3')
+masks, _, _, _ = model.eval(np_img, diameter=30, channels=[0,0])
+</code></pre>
+<p><strong>Use Case 2:</strong> Segment in Python, measure in ImageJ</p>
+<pre><code class="language-python"># After Cellpose segmentation, use ImageJ for measurements
+java_masks = ij.py.to_java(masks)
+ij.py.run_macro(&quot;&quot;&quot;
+    run(&quot;Set Measurements...&quot;, &quot;area mean perimeter shape redirect=None&quot;);
+    run(&quot;Analyze Particles...&quot;, &quot;display clear&quot;);
+&quot;&quot;&quot;)
+</code></pre>
+<p><strong>Use Case 3:</strong> Use ImageJ file format support</p>
+<pre><code class="language-python"># ImageJ can read proprietary formats (Leica LIF, Zeiss CZI, Nikon ND2)
+# via Bio-Formats
+img = ij.io().open('experiment.lif')
+</code></pre>
+<hr />
+<h2>When to Use PyImageJ vs. Pure Python</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>PyImageJ</th>
+<th>Pure Python (scikit-image)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read .lif, .czi, .nd2 files</td>
+<td>✅ (via Bio-Formats)</td>
+<td>❌ (limited support)</td>
+</tr>
+<tr>
+<td>Rolling ball BG subtraction</td>
+<td>✅ (well-tested)</td>
+<td>✅ (available but different implementation)</td>
+</tr>
+<tr>
+<td>ROI Manager operations</td>
+<td>✅</td>
+<td>❌ (no equivalent)</td>
+</tr>
+<tr>
+<td>Measurements (Analyze Particles)</td>
+<td>✅</td>
+<td>✅ (regionprops)</td>
+</tr>
+<tr>
+<td>Deep learning inference</td>
+<td>Use Python directly</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Data analysis and plotting</td>
+<td>Use pandas/matplotlib</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>See also:</strong> <a href="../04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html" class="internal-link">Lab 06 - Building a Python Pipeline with PyImageJ</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

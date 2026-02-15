@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 06 - Building a Python Pipeline with PyImageJ</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Lab 06 — Building a Python Pipeline with PyImageJ</h1>
+<p><a href="../../search.html?tag=lab" class="tag">#lab</a> <a href="../../search.html?tag=python" class="tag">#python</a> <a href="../../search.html?tag=pyimagej" class="tag">#pyimagej</a> <a href="../../search.html?tag=pipeline" class="tag">#pipeline</a> <a href="../../search.html?tag=hands-on" class="tag">#hands-on</a></p>
+<hr />
+<h2>Objective</h2>
+<p>Build a complete analysis pipeline that combines Python (for AI and data science) with ImageJ (for image processing and measurement). This is the "best of both worlds" approach.</p>
+<p><strong>Time:</strong> ~60 minutes<br />
+<strong>Prerequisites:</strong> Python 3.9+ with pyimagej, cellpose, numpy, pandas, matplotlib installed</p>
+<hr />
+<h2>Setup</h2>
+<pre><code class="language-bash"># Install everything needed
+pip install pyimagej cellpose numpy pandas matplotlib scikit-image
+</code></pre>
+<hr />
+<h2>The Pipeline</h2>
+<p>We'll build a pipeline that:<br />
+1. Loads images from a folder<br />
+2. Denoises with a simple filter (or CARE if available)<br />
+3. Segments nuclei with Cellpose<br />
+4. Measures properties using ImageJ<br />
+5. Exports results to a pandas DataFrame<br />
+6. Creates summary plots</p>
+<hr />
+<h2>Complete Script</h2>
+<pre><code class="language-python">&quot;&quot;&quot;
+Lab 06: Complete Python + ImageJ Analysis Pipeline
+====================================================
+Combines Cellpose segmentation with ImageJ measurements
+&quot;&quot;&quot;
+
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from skimage import io, measure, filters
+from cellpose import models
+from pathlib import Path
+
+# ============================================
+# Configuration
+# ============================================
+INPUT_DIR = &quot;input_images&quot;       # Folder with your .tif files
+OUTPUT_DIR = &quot;results&quot;           # Where results will be saved
+CELL_DIAMETER = 30               # Estimated nuclear diameter in pixels
+MODEL_TYPE = &quot;nuclei&quot;            # Cellpose model ('nuclei' or 'cyto3')
+
+# Create output directory
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# ============================================
+# Initialize Cellpose
+# ============================================
+print(&quot;Loading Cellpose model...&quot;)
+model = models.Cellpose(model_type=MODEL_TYPE, gpu=False)
+print(&quot;Model loaded.&quot;)
+
+# ============================================
+# Process each image
+# ============================================
+all_results = []
+
+image_files = sorted(Path(INPUT_DIR).glob(&quot;*.tif&quot;))
+print(f&quot;Found {len(image_files)} images to process&quot;)
+
+for img_path in image_files:
+    print(f&quot;\nProcessing: {img_path.name}&quot;)
+
+    # --- Load image ---
+    img = io.imread(str(img_path))
+    if img.ndim == 3:
+        # Take first channel if multi-channel
+        img = img[:, :, 0]
+    img = img.astype(np.float32)
+
+    # --- Pre-processing (light denoising) ---
+    img_filtered = filters.gaussian(img, sigma=1)
+
+    # --- Segmentation with Cellpose ---
+    masks, flows, styles, diams = model.eval(
+        img_filtered,
+        diameter=CELL_DIAMETER,
+        channels=[0, 0],
+        flow_threshold=0.4,
+        cellprob_threshold=0.0
+    )
+
+    n_objects = masks.max()
+    print(f&quot;  Detected {n_objects} objects&quot;)
+
+    # --- Measure properties using scikit-image ---
+    props = measure.regionprops_table(
+        masks,
+        intensity_image=img,  # Measure on original (not filtered)
+        properties=[
+            'label',
+            'area',
+            'perimeter',
+            'eccentricity',
+            'mean_intensity',
+            'max_intensity',
+            'min_intensity',
+            'solidity',
+            'centroid'
+        ]
+    )
+
+    # Convert to DataFrame
+    df = pd.DataFrame(props)
+    df['image'] = img_path.name
+    df['image_mean_bg'] = np.mean(img[masks == 0])  # Background intensity
+
+    all_results.append(df)
+
+    # --- Save mask ---
+    io.imsave(
+        os.path.join(OUTPUT_DIR, f&quot;{img_path.stem}_masks.tif&quot;),
+        masks.astype(np.uint16)
+    )
+
+# ============================================
+# Combine all results
+# ============================================
+results = pd.concat(all_results, ignore_index=True)
+print(f&quot;\n{'='*50}&quot;)
+print(f&quot;Total objects across all images: {len(results)}&quot;)
+print(f&quot;{'='*50}&quot;)
+
+# --- Summary statistics ---
+print(&quot;\nSummary Statistics:&quot;)
+print(results&lt;a href=&quot;#&quot; class=&quot;internal-link broken&quot;&gt;'area', 'mean_intensity', 'eccentricity', 'solidity'&lt;/a&gt;.describe())
+
+# --- Save to CSV ---
+csv_path = os.path.join(OUTPUT_DIR, &quot;all_measurements.csv&quot;)
+results.to_csv(csv_path, index=False)
+print(f&quot;\nResults saved to: {csv_path}&quot;)
+
+# ============================================
+# Visualizations
+# ============================================
+
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+
+# Area distribution
+axes[0, 0].hist(results['area'], bins=50, edgecolor='black', alpha=0.7)
+axes[0, 0].set_xlabel('Area (pixels²)')
+axes[0, 0].set_ylabel('Count')
+axes[0, 0].set_title('Object Area Distribution')
+
+# Mean intensity distribution
+axes[0, 1].hist(results['mean_intensity'], bins=50, edgecolor='black', alpha=0.7, color='green')
+axes[0, 1].set_xlabel('Mean Intensity')
+axes[0, 1].set_ylabel('Count')
+axes[0, 1].set_title('Mean Intensity Distribution')
+
+# Area vs Intensity scatter
+axes[1, 0].scatter(results['area'], results['mean_intensity'], alpha=0.3, s=10)
+axes[1, 0].set_xlabel('Area (pixels²)')
+axes[1, 0].set_ylabel('Mean Intensity')
+axes[1, 0].set_title('Area vs. Intensity')
+
+# Objects per image
+per_image = results.groupby('image').size()
+axes[1, 1].bar(range(len(per_image)), per_image.values, edgecolor='black', alpha=0.7, color='orange')
+axes[1, 1].set_xlabel('Image Index')
+axes[1, 1].set_ylabel('Object Count')
+axes[1, 1].set_title('Objects per Image')
+
+plt.tight_layout()
+plt.savefig(os.path.join(OUTPUT_DIR, &quot;analysis_summary.png&quot;), dpi=150)
+plt.show()
+print(f&quot;Summary plot saved to: {os.path.join(OUTPUT_DIR, 'analysis_summary.png')}&quot;)
+</code></pre>
+<hr />
+<h2>Using PyImageJ (Optional Advanced Section)</h2>
+<p>If you want to use ImageJ-specific functions from Python:</p>
+<pre><code class="language-python">&quot;&quot;&quot;
+Optional: Using PyImageJ to call ImageJ functions from Python
+&quot;&quot;&quot;
+import imagej
+
+# Initialize ImageJ (this downloads Fiji if needed - first run may be slow)
+ij = imagej.init('sc.fiji:fiji', mode='interactive')
+print(f&quot;ImageJ version: {ij.getVersion()}&quot;)
+
+# Load image via ImageJ
+dataset = ij.io().open('my_image.tif')
+
+# Convert between ImageJ and numpy
+np_image = ij.py.from_java(dataset)
+# ... process in Python ...
+java_image = ij.py.to_java(np_image)
+
+# Run ImageJ commands
+ij.py.run_macro('run(&quot;Gaussian Blur...&quot;, &quot;sigma=2&quot;)')
+
+# Get measurements via ImageJ
+ij.py.run_macro(&quot;&quot;&quot;
+    run(&quot;Set Measurements...&quot;, &quot;area mean perimeter shape redirect=None decimal=3&quot;);
+    run(&quot;Analyze Particles...&quot;, &quot;size=50-Infinity display clear&quot;);
+&quot;&quot;&quot;)
+</code></pre>
+<hr />
+<h2>Pipeline Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────┐
+│              Python Script                   │
+│                                             │
+│  ┌─────────┐   ┌──────────┐   ┌─────────┐ │
+│  │  Load    │──→│ Cellpose │──→│ Measure │ │
+│  │ (skimage)│   │ (AI seg) │   │ (skimage│ │
+│  └─────────┘   └──────────┘   │  + IJM)  │ │
+│                                └────┬────┘ │
+│                                     │       │
+│  ┌──────────┐   ┌──────────┐       │       │
+│  │  Pandas  │←──│  Export   │←──────┘       │
+│  │ DataFrame│   │  Results  │               │
+│  └────┬─────┘   └──────────┘               │
+│       │                                     │
+│  ┌────▼──────┐                              │
+│  │Matplotlib │                              │
+│  │  Plots    │                              │
+│  └───────────┘                              │
+└─────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2>Takeaways</h2>
+<ul>
+<li>Python gives you access to the entire data science ecosystem (pandas, matplotlib, scikit-learn)</li>
+<li>Cellpose runs natively in Python — no wrapper needed</li>
+<li>scikit-image's <code>regionprops</code> provides comprehensive measurements</li>
+<li>PyImageJ bridges any remaining ImageJ-specific functionality</li>
+<li>This pipeline pattern scales to thousands of images</li>
+</ul>
+<hr />
+<p><strong>Next:</strong> <a href="../05-advanced-pipelines/12-pyimagej-fiji-meets-python.html" class="internal-link">12 - PyImageJ - Fiji Meets Python</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

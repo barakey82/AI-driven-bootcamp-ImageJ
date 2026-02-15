@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 02 - Cellpose Cell Segmentation</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Lab 02 — Cellpose Cell Segmentation</h1>
+<p><a href="../../search.html?tag=lab" class="tag">#lab</a> <a href="../../search.html?tag=cellpose" class="tag">#cellpose</a> <a href="../../search.html?tag=segmentation" class="tag">#segmentation</a> <a href="../../search.html?tag=hands-on" class="tag">#hands-on</a></p>
+<hr />
+<h2>Objective</h2>
+<p>Segment irregular cell shapes using Cellpose, demonstrating capabilities beyond classical methods.</p>
+<p><strong>Time:</strong> ~45 minutes<br />
+<strong>Prerequisites:</strong> Python 3.8+ with Cellpose installed (<code>pip install cellpose[gui]</code>)</p>
+<hr />
+<h2>Part A: Classical Methods (Watch Them Struggle)</h2>
+<p>Open a phase contrast or DIC image of cells with irregular shapes in Fiji and try:</p>
+<pre><code class="language-javascript">run(&quot;8-bit&quot;);
+run(&quot;Subtract Background...&quot;, &quot;rolling=50&quot;);
+setAutoThreshold(&quot;Otsu dark&quot;);
+run(&quot;Convert to Mask&quot;);
+run(&quot;Fill Holes&quot;);
+run(&quot;Watershed&quot;);
+run(&quot;Analyze Particles...&quot;, &quot;size=500-Infinity show=Outlines display clear summarize add&quot;);
+print(&quot;Classical detected: &quot; + nResults + &quot; cells&quot;);
+</code></pre>
+<p><strong>Expected:</strong> Poor segmentation on irregular shapes. Note the failures.</p>
+<hr />
+<h2>Part B: Cellpose GUI</h2>
+<pre><code class="language-bash"># Launch
+python -m cellpose
+</code></pre>
+<ol>
+<li>Open your image</li>
+<li>Set model to <strong>cyto3</strong>, estimate cell diameter</li>
+<li>Click <strong>Run Segmentation</strong></li>
+<li>Adjust diameter if needed and re-run</li>
+</ol>
+<hr />
+<h2>Part C: Cellpose from Python</h2>
+<pre><code class="language-python">&quot;&quot;&quot;
+Lab 02: Cellpose segmentation
+&quot;&quot;&quot;
+from cellpose import models, io
+import numpy as np
+from skimage import io as skio
+
+# Load image
+img = skio.imread('your_cells.tif')
+
+# Initialize and run
+model = models.Cellpose(model_type='cyto3', gpu=False)
+masks, flows, styles, diams = model.eval(
+    img,
+    diameter=30,
+    channels=[0, 0],
+    flow_threshold=0.4,
+    cellprob_threshold=0.0
+)
+
+print(f&quot;Detected {masks.max()} cells&quot;)
+print(f&quot;Estimated diameter: {diams:.1f} px&quot;)
+
+# Save masks for use in Fiji
+skio.imsave('cellpose_masks.tif', masks.astype(np.uint16))
+</code></pre>
+<hr />
+<h2>Part D: Comparing Models</h2>
+<p>Try different Cellpose models on the same image:</p>
+<pre><code class="language-python">for model_type in ['cyto3', 'cyto2', 'nuclei']:
+    model = models.Cellpose(model_type=model_type, gpu=False)
+    masks, _, _, _ = model.eval(img, diameter=30, channels=[0,0])
+    print(f&quot;{model_type}: {masks.max()} objects detected&quot;)
+</code></pre>
+<hr />
+<h2>Part E: Export Masks to Fiji</h2>
+<p>The masks Cellpose generates are label images (each cell = unique integer). Open in Fiji:</p>
+<pre><code class="language-javascript">// Open Cellpose output in Fiji
+open(&quot;/path/to/cellpose_masks.tif&quot;);
+
+// Convert labels to ROIs
+nLabels = getValue(&quot;Max&quot;);
+for (i = 1; i &lt;= nLabels; i++) {
+    setThreshold(i, i);
+    run(&quot;Create Selection&quot;);
+    if (selectionType() != -1) {
+        roiManager(&quot;Add&quot;);
+    }
+}
+run(&quot;Select None&quot;);
+resetThreshold();
+
+// Measure on original image
+selectWindow(&quot;your_cells.tif&quot;);
+roiManager(&quot;Measure&quot;);
+</code></pre>
+<hr />
+<h2>Takeaways</h2>
+<ul>
+<li>Cellpose handles shapes that classical methods cannot</li>
+<li>The <code>diameter</code> parameter is the most important setting</li>
+<li>Cellpose complements StarDist: use StarDist for nuclei, Cellpose for cytoplasm</li>
+<li>Results integrate with Fiji's ROI Manager for standard measurements</li>
+</ul>
+<hr />
+<p><strong>Next Lab:</strong> <a href="lab-03-denoising-with-care.html" class="internal-link">Lab 03 - Denoising with CARE</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

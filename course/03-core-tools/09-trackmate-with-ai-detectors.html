@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09 - TrackMate with AI Detectors</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>09 - TrackMate with AI Detectors</h1>
+<p><a href="../../search.html?tag=tracking" class="tag">#tracking</a> <a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=trackmate" class="tag">#trackmate</a> <a href="../../search.html?tag=time-lapse" class="tag">#time-lapse</a></p>
+<hr />
+<h2>Overview</h2>
+<p>TrackMate is Fiji's established cell tracking framework. What's new is that it now integrates AI-based detectors (StarDist, Cellpose) instead of relying solely on classical methods. This dramatically improves tracking accuracy on complex time-lapse data.</p>
+<p>🔗 <strong>TrackMate:</strong> <a href="https://imagej.net/plugins/trackmate/">https://imagej.net/plugins/trackmate/</a><br />
+🔗 <strong>Paper:</strong> Ershov et al., "TrackMate 7: integrating state-of-the-art segmentation algorithms into tracking pipelines" (Nature Methods, 2022)</p>
+<hr />
+<h2>Before &amp; After</h2>
+<h3>The Old Way</h3>
+<pre><code>TrackMate → LoG (Laplacian of Gaussian) Detector →
+Manually set threshold → Many false detections →
+Simple LAP Tracker → Frequent tracking errors →
+Manual correction of broken tracks → Hours of work
+</code></pre>
+<h3>The New Way</h3>
+<pre><code>TrackMate → StarDist Detector (AI) →
+Automatic robust detection → LAP Tracker →
+Far fewer tracking errors → Minimal manual correction
+</code></pre>
+<hr />
+<h2>Setting Up TrackMate with StarDist</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>StarDist plugin installed (via update sites)</li>
+<li>TrackMate-StarDist update site enabled</li>
+</ul>
+<h3>Workflow</h3>
+<ol>
+<li>Open your time-lapse image</li>
+<li><strong>Plugins → Tracking → TrackMate</strong></li>
+<li>In the <strong>Detector</strong> selection step, choose <strong>StarDist detector</strong></li>
+<li>Configure StarDist parameters:</li>
+<li>Select model ("Versatile (fluorescent nuclei)" for nuclei)</li>
+<li>Set probability threshold</li>
+<li>Set overlap threshold</li>
+<li>Click <strong>Preview</strong> to test on current frame</li>
+<li>Click <strong>Next</strong> to detect on all frames</li>
+<li>Choose your <strong>Tracker</strong> (Simple LAP tracker works well for most cases)</li>
+<li>Configure tracking parameters:</li>
+<li>Max linking distance</li>
+<li>Max gap-closing distance</li>
+<li>Max frame gap</li>
+<li>Run tracking</li>
+<li>Review and edit tracks</li>
+</ol>
+<h3>Tracking Parameters Guide</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>What It Controls</th>
+<th>How to Set</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Max linking distance</td>
+<td>Maximum distance a cell can move between frames</td>
+<td>~2× typical cell displacement per frame</td>
+</tr>
+<tr>
+<td>Gap-closing distance</td>
+<td>Max distance for reconnecting broken tracks</td>
+<td>~3× typical displacement</td>
+</tr>
+<tr>
+<td>Max frame gap</td>
+<td>How many frames of disappearance to bridge</td>
+<td>2-3 for stable imaging, more for noisy data</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Using Cellpose as TrackMate Detector</h2>
+<p>For irregular cell shapes, Cellpose is the better detector:</p>
+<ol>
+<li>Install the Cellpose TrackMate integration<br />
+   🔗 <a href="https://github.com/BIOP/ijl-utilities-wrappers">https://github.com/BIOP/ijl-utilities-wrappers</a></li>
+<li>In TrackMate detector selection, choose <strong>Cellpose detector</strong></li>
+<li>Configure Cellpose parameters (model, diameter)</li>
+<li>Proceed with tracking as normal</li>
+</ol>
+<hr />
+<h2>TrackMate Analysis Features</h2>
+<p>TrackMate provides rich analysis on tracked cells:</p>
+<p><strong>Per-track measurements:</strong><br />
+- Track displacement, velocity, directionality<br />
+- Track duration and number of spots<br />
+- Mean/max speed</p>
+<p><strong>Per-spot measurements:</strong><br />
+- Position (X, Y, Z, T)<br />
+- Intensity statistics<br />
+- Morphological features (area, shape descriptors)</p>
+<p><strong>Export options:</strong><br />
+- CSV tables for statistical analysis<br />
+- Track overlay on original image<br />
+- Filtered tracks by criteria</p>
+<h3>Export to CSV</h3>
+<pre><code>TrackMate → Analysis → Export tracks/spots to CSV
+</code></pre>
+<p>This gives you data ready for R, Python, or any statistics tool.</p>
+<hr />
+<h2>Macro-Based Batch Tracking</h2>
+<p>For processing multiple time-lapse datasets:</p>
+<pre><code class="language-python"># Python script using PyImageJ for batch tracking
+import imagej
+import os
+
+ij = imagej.init('sc.fiji:fiji')
+
+input_dir = '/path/to/timelapse_data/'
+output_dir = '/path/to/results/'
+
+for filename in os.listdir(input_dir):
+    if filename.endswith('.tif'):
+        # Open image
+        imp = ij.IJ.openImage(os.path.join(input_dir, filename))
+
+        # TrackMate with StarDist can be scripted via Jython/Python
+        # (see TrackMate scripting documentation for full API)
+
+        print(f&quot;Processed: {filename}&quot;)
+</code></pre>
+<p>🔗 <strong>TrackMate scripting guide:</strong> <a href="https://imagej.net/plugins/trackmate/scripting/scripting">https://imagej.net/plugins/trackmate/scripting/scripting</a></p>
+<hr />
+<h2>Tips</h2>
+<ul>
+<li><strong>Preview first:</strong> Always preview detection on a few frames before running on the full stack</li>
+<li><strong>Temporal consistency:</strong> AI detectors work per-frame, so consistent detection quality across all frames greatly improves tracking</li>
+<li><strong>Division detection:</strong> TrackMate can detect cell divisions — enable this in the tracker settings if relevant</li>
+<li><strong>Overlay colors:</strong> Use the track coloring options to color tracks by speed, displacement, or track ID</li>
+</ul>
+<hr />
+<p><strong>Next:</strong> <a href="10-clij-gpu-accelerated-processing.html" class="internal-link">10 - CLIJ - GPU-Accelerated Processing</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

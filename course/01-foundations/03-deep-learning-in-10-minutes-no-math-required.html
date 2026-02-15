@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 - Deep Learning in 10 Minutes (No Math Required)</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>03 - Deep Learning in 10 Minutes (No Math Required)</h1>
+<p><a href="../../search.html?tag=deep-learning" class="tag">#deep-learning</a> <a href="../../search.html?tag=foundations" class="tag">#foundations</a> <a href="../../search.html?tag=concepts" class="tag">#concepts</a></p>
+<hr />
+<h2>Overview</h2>
+<p>You don't need to understand the math to use deep learning tools. But a basic mental model of what's happening "under the hood" will help you choose the right tool, understand when results look wrong, and communicate with computational colleagues.</p>
+<hr />
+<h2>The Core Idea</h2>
+<p><strong>Classical image analysis:</strong> You write rules → computer follows them.</p>
+<p><strong>Deep learning:</strong> You show examples → computer learns rules.</p>
+<p>That's it. Everything else is implementation detail.</p>
+<hr />
+<h2>The Key Concepts</h2>
+<h3>1. Training Data</h3>
+<p>A deep learning model learns from <strong>annotated examples</strong> — pairs of:<br />
+- <strong>Input:</strong> The raw microscopy image<br />
+- <strong>Ground truth:</strong> The correct answer (e.g., manually drawn segmentation masks)</p>
+<p>The more diverse and high-quality your training data, the better the model.</p>
+<div class="admonition note">
+<div class="admonition-title">You often don't need to create training data</div>
+<div class="admonition-content">
+Pre-trained models (like those in the BioImage Model Zoo) were already trained on thousands of annotated images. You just download and use them.
+</div></div>
+
+<h3>2. The Neural Network</h3>
+<p>Think of it as a function with millions of adjustable knobs (called <strong>weights</strong> or <strong>parameters</strong>):</p>
+<pre><code>Input image → [ Neural Network with millions of knobs ] → Output prediction
+</code></pre>
+<p>During training, the algorithm adjusts all those knobs until the outputs match the ground truth as closely as possible.</p>
+<h3>3. The U-Net Architecture</h3>
+<p>Almost every bioimage AI tool uses some variant of the <strong>U-Net</strong>, published in 2015 specifically for biomedical image segmentation.</p>
+<p>Why it's called U-Net — the architecture looks like the letter U:</p>
+<pre><code>Input                                              Output
+  ↓                                                  ↑
+[Encode] → compress → compress → compress    [Decode] → expand → expand → expand
+     ↓                                    ↑
+      →→→→→→→→ skip connections →→→→→→→→→→→
+</code></pre>
+<p><strong>Key insight:</strong> The "skip connections" pass fine detail directly from the input side to the output side. This is why U-Nets are so good at precise boundaries — they see both the "big picture" (compressed representation) and the "fine detail" (from skip connections).</p>
+<h3>4. Instance vs. Semantic Segmentation</h3>
+<p>Two types of segmentation output:</p>
+<p><strong>Semantic segmentation:</strong> Labels every pixel as a class (e.g., "nucleus" vs. "background"), but doesn't distinguish between individual objects. Two touching nuclei are both labeled "nucleus."</p>
+<p><strong>Instance segmentation:</strong> Labels every pixel AND separates individual objects. Two touching nuclei get different labels (nucleus <a href="../../search.html?tag=1" class="tag">#1</a>, nucleus <a href="../../search.html?tag=2" class="tag">#2</a>). This is what StarDist and Cellpose do.</p>
+<pre><code>Semantic:                Instance:
+┌─────────┐             ┌─────────┐
+│ ██  ██  │             │ ▓▓  ██  │
+│ ██████  │             │ ▓▓▓███  │
+│  ████   │             │  ▓▓██   │
+└─────────┘             └─────────┘
+&quot;all nuclei&quot;            &quot;nucleus 1&quot; and &quot;nucleus 2&quot;
+</code></pre>
+<h3>5. Pre-trained vs. Custom Models</h3>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>When to Use</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pre-trained model</strong></td>
+<td>Your data looks similar to what it was trained on</td>
+<td>Minutes (just download and run)</td>
+</tr>
+<tr>
+<td><strong>Fine-tuned model</strong></td>
+<td>Pre-trained model is close but not perfect</td>
+<td>Hours (need some annotated data)</td>
+</tr>
+<tr>
+<td><strong>Train from scratch</strong></td>
+<td>Nothing existing works for your data</td>
+<td>Days/weeks (need lots of annotated data)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Always try pre-trained first.</strong> You'll be surprised how often it works.</p>
+<h3>6. GPU vs. CPU</h3>
+<p>Deep learning inference (running a model) can run on CPU but is much faster on GPU:</p>
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Typical Speed (single 2D image)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>5-60 seconds</td>
+</tr>
+<tr>
+<td>GPU (NVIDIA)</td>
+<td>0.1-2 seconds</td>
+</tr>
+</tbody>
+</table>
+<p>For occasional use, CPU is fine. For batch processing hundreds of images, GPU makes a big difference. This is where <a href="../03-core-tools/10-clij-gpu-accelerated-processing.html" class="internal-link">10 - CLIJ - GPU-Accelerated Processing</a> becomes relevant.</p>
+<hr />
+<h2>How StarDist Works (Simplified)</h2>
+<p>StarDist detects objects by predicting, for each pixel:<br />
+1. <strong>Is this pixel inside an object?</strong> (probability)<br />
+2. <strong>If yes, how far is it to the boundary in N directions?</strong> (star-convex polygon)</p>
+<pre><code>For each pixel inside a nucleus:
+        ╱ distance to boundary at 0°
+       ╱  distance at 45°
+      ╱   distance at 90°
+     ╱    ... etc (32 directions)
+    *───→ 
+     ╲
+      ╲
+       ╲  This creates a star-shaped polygon
+        ╲ that defines the object boundary
+</code></pre>
+<p>Because each pixel independently predicts its object boundary, touching objects naturally separate.</p>
+<hr />
+<h2>How Cellpose Works (Simplified)</h2>
+<p>Cellpose takes a different approach — it predicts <strong>flow fields</strong> that point toward the center of each cell:</p>
+<pre><code>Step 1: For each pixel, predict a &quot;flow&quot; pointing toward cell center
+
+    ↗ ↑ ↖          These arrows all point toward
+    → ● ←          the center of their cell
+    ↘ ↓ ↙
+
+Step 2: Follow the flows — all pixels flowing to the same center belong to the same cell
+</code></pre>
+<p>This approach is brilliant because it works regardless of cell shape. Round cells, elongated cells, amoeba-shaped cells — as long as they have a center, the flows converge.</p>
+<hr />
+<h2>How CARE Works (Simplified)</h2>
+<p>CARE (Content-Aware image REstoration) learns the relationship between noisy and clean images:</p>
+<pre><code>Training:
+    Noisy image → [Neural Network] → Predicted clean image
+                                      ↕ compare with
+                                   Actual clean image
+                                      ↕ adjust weights
+
+Inference:
+    Your noisy image → [Trained Network] → Restored image
+</code></pre>
+<p>The key insight: CARE doesn't just blur away noise. It has learned what real biological structure looks like, so it can distinguish structure from noise in ways that classical filters cannot.</p>
+<p><strong>Noise2Void</strong> is a variant that doesn't even need paired clean images — it learns to denoise from the noisy images alone.</p>
+<hr />
+<h2>Common Misconceptions</h2>
+<h3>"AI is a black box — I can't trust it"</h3>
+<p>Modern tools provide probability/confidence maps alongside their predictions. You can see where the model is uncertain. Additionally, you can validate AI results against manual annotation on a subset.</p>
+<h3>"I need a powerful computer"</h3>
+<p>For running pre-trained models (inference), a standard lab computer works fine. GPU helps but isn't required. Only training new models benefits significantly from GPU hardware.</p>
+<h3>"I need to learn Python/programming"</h3>
+<p>Most tools covered in this course have Fiji GUI interfaces. No coding required for basic use. Python expands your capabilities but isn't mandatory.</p>
+<h3>"AI will give different results each time"</h3>
+<p>Inference is deterministic given the same model and input. Same image + same model = same results. (Some tools have optional randomness that can be turned off.)</p>
+<h3>"I need thousands of training images"</h3>
+<p>For pre-trained models: zero training images needed. For fine-tuning: often 10-50 annotated images is enough. StarDist and Cellpose were designed to be data-efficient.</p>
+<hr />
+<h2>The Landscape at a Glance</h2>
+<pre><code>                    ┌─────────────────────────┐
+                    │    Your Microscopy Image  │
+                    └────────────┬────────────┘
+                                 │
+               ┌─────────────────┼─────────────────┐
+               ▼                 ▼                   ▼
+        ┌──────────┐     ┌──────────────┐    ┌────────────┐
+        │ Too Noisy │     │ Need to      │    │ Need to    │
+        │           │     │ Segment      │    │ Track      │
+        └─────┬────┘     └──────┬───────┘    └─────┬──────┘
+              │                  │                   │
+              ▼                  │                   ▼
+        ┌──────────┐     ┌──────┴───────┐    ┌────────────┐
+        │ CARE     │     │              │    │ TrackMate  │
+        │ N2V      │     ▼              ▼    │ + AI       │
+        │ CSBDeep  │  ┌────────┐ ┌─────────┐ └────────────┘
+        └──────────┘  │StarDist│ │Cellpose │
+                      │(round) │ │(any     │
+                      │        │ │ shape)  │
+                      └────────┘ └─────────┘
+                           │          │
+                           ▼          ▼
+                    ┌─────────────────────┐
+                    │   ROIs / Masks      │
+                    │   → Measurements    │
+                    │   → Statistics      │
+                    └─────────────────────┘
+</code></pre>
+<hr />
+<p><strong>Next:</strong> <a href="../02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html" class="internal-link">04 - The New Fiji - Update Sites and AI Plugins</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

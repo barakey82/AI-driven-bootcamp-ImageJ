@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting FAQ</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Troubleshooting FAQ</h1>
+<p><a href="../../search.html?tag=reference" class="tag">#reference</a> <a href="../../search.html?tag=troubleshooting" class="tag">#troubleshooting</a> <a href="../../search.html?tag=faq" class="tag">#faq</a></p>
+<hr />
+<h2>Fiji / General</h2>
+<h3>Fiji won't start or crashes on launch</h3>
+<ul>
+<li>Delete the Fiji folder and download a fresh copy from <a href="https://fiji.sc">https://fiji.sc</a></li>
+<li>On Mac: right-click → Open (to bypass Gatekeeper)</li>
+<li>On Windows: don't install in <code>C:\Program Files</code> — use <code>C:\Fiji</code> or your home directory</li>
+</ul>
+<h3>"Out of memory" errors</h3>
+<ul>
+<li><strong>Edit → Options → Memory &amp; Threads</strong> → set to 75% of your system RAM</li>
+<li>Close unnecessary images before processing</li>
+<li>For very large images: use tiling (most AI tools support it)</li>
+</ul>
+<h3>Update sites won't load / connection errors</h3>
+<ul>
+<li>Check your internet connection</li>
+<li>Try: <strong>Help → Update... → Manage Update Sites → Add Update Site</strong> manually</li>
+<li>If behind a proxy: <strong>Edit → Options → Proxy Settings</strong></li>
+</ul>
+<hr />
+<h2>StarDist</h2>
+<h3>"TensorFlow not found" error</h3>
+<ul>
+<li>Ensure CSBDeep update site is enabled AND applied</li>
+<li>Restart Fiji after enabling update sites</li>
+<li>Try updating Fiji completely: <strong>Help → Update... → Apply Changes</strong></li>
+<li>Check Java version: StarDist needs Java 8+</li>
+</ul>
+<h3>StarDist detects too many / too few objects</h3>
+<ul>
+<li><strong>Too many:</strong> Increase probability threshold (e.g., 0.5 → 0.7)</li>
+<li><strong>Too few:</strong> Decrease probability threshold (e.g., 0.5 → 0.3)</li>
+<li><strong>Objects merging:</strong> Decrease NMS threshold (e.g., 0.3 → 0.1)</li>
+<li><strong>Single objects splitting:</strong> Increase NMS threshold (e.g., 0.3 → 0.5)</li>
+</ul>
+<h3>StarDist runs very slowly</h3>
+<ul>
+<li>Enable tiling: increase <code>nTiles</code> parameter</li>
+<li>Check that your image is single-channel (extract the nuclear channel first)</li>
+<li>For batch processing: consider using StarDist from Python with GPU</li>
+</ul>
+<h3>StarDist produces empty results</h3>
+<ul>
+<li>Check that your image is the right type (StarDist expects a single-channel grayscale image)</li>
+<li>Make sure the image isn't already binary/mask — StarDist needs raw intensity data</li>
+<li>Try the "Versatile (fluorescent nuclei)" model as a baseline</li>
+</ul>
+<hr />
+<h2>Cellpose</h2>
+<h3>Cellpose won't install</h3>
+<pre><code class="language-bash"># Try upgrading pip first
+pip install --upgrade pip
+pip install cellpose
+
+# If that fails, try conda
+conda install -c conda-forge cellpose
+</code></pre>
+<h3>Cellpose is very slow</h3>
+<ul>
+<li>CPU mode is functional but slow (30-60 sec per image)</li>
+<li>For GPU: <code>pip install cellpose[gui]</code> + NVIDIA CUDA toolkit</li>
+<li>Reduce image size before processing if possible</li>
+</ul>
+<h3>Cellpose results look wrong</h3>
+<ul>
+<li><strong>Most common issue:</strong> wrong diameter estimate</li>
+<li>Use the Cellpose GUI diameter tool to measure</li>
+<li>Try <code>diameter=0</code> for auto-estimation</li>
+<li><strong>Cells merging:</strong> decrease diameter</li>
+<li><strong>Cells splitting:</strong> increase diameter</li>
+<li><strong>Wrong model:</strong> try <code>cyto3</code>, <code>cyto2</code>, and <code>nuclei</code> to see which fits</li>
+</ul>
+<h3>Cellpose GUI won't launch</h3>
+<pre><code class="language-bash"># Ensure Qt is installed
+pip install cellpose[gui]
+# Or install PyQt separately
+pip install PyQt6
+</code></pre>
+<hr />
+<h2>DeepImageJ</h2>
+<h3>Model won't install</h3>
+<ul>
+<li>Check that the model format is compatible with your DeepImageJ version</li>
+<li>Ensure you have enough disk space</li>
+<li>Try downloading the model manually and installing from file</li>
+</ul>
+<h3>Model produces blank/wrong output</h3>
+<ul>
+<li>Check that your input image matches the model's expected input (dimensions, channels, bit depth)</li>
+<li>Read the model card on bioimage.io for expected input specifications</li>
+<li>Some models expect normalized input (0-1 range) — check preprocessing settings</li>
+</ul>
+<h3>"Engine not found" error</h3>
+<ul>
+<li>DeepImageJ needs a TensorFlow or PyTorch engine</li>
+<li>Ensure CSBDeep update site is enabled (provides TensorFlow)</li>
+<li>Check DeepImageJ documentation for engine compatibility</li>
+</ul>
+<hr />
+<h2>CLIJ2</h2>
+<h3>"No OpenCL device found"</h3>
+<ul>
+<li>Update your graphics drivers</li>
+<li>Check that your GPU supports OpenCL (most modern GPUs do)</li>
+<li>Try specifying the device: <code>run("CLIJ2 Macro Extensions", "cl_device=[your GPU name]")</code></li>
+</ul>
+<h3>CLIJ2 operations produce wrong results</h3>
+<ul>
+<li>Some CLIJ2 operations behave slightly differently from their CPU equivalents</li>
+<li>Check documentation: <a href="https://clij.github.io">https://clij.github.io</a></li>
+<li>Always verify against the CPU version on a test image first</li>
+</ul>
+<hr />
+<h2>PyImageJ</h2>
+<h3>PyImageJ won't initialize</h3>
+<pre><code class="language-python"># Try headless mode
+ij = imagej.init('sc.fiji:fiji', mode='headless')
+
+# Or specify Java home
+import os
+os.environ['JAVA_HOME'] = '/path/to/java'
+ij = imagej.init('sc.fiji:fiji')
+</code></pre>
+<h3>Import errors</h3>
+<pre><code class="language-bash"># Make sure Java 11+ is installed
+java -version
+
+# Install with all dependencies
+pip install pyimagej[all]
+</code></pre>
+<h3>Slow first startup</h3>
+<ul>
+<li>First initialization downloads Fiji (~1 GB) — this is normal</li>
+<li>Subsequent starts use cached files and are faster</li>
+</ul>
+<hr />
+<h2>ZeroCostDL4Mic / Google Colab</h2>
+<h3>Colab disconnects during training</h3>
+<ul>
+<li>Google Colab has usage limits — training may be interrupted</li>
+<li>Save checkpoints frequently</li>
+<li>Consider Google Colab Pro for longer sessions</li>
+<li>Alternative: run locally if you have a GPU</li>
+</ul>
+<h3>Training loss doesn't decrease</h3>
+<ul>
+<li>Check your training data (are images and labels correctly paired?)</li>
+<li>Try reducing the learning rate</li>
+<li>Ensure images are in the expected format (8-bit or 16-bit TIFF)</li>
+<li>Check that label masks have unique integer values per object</li>
+</ul>
+<h3>Model doesn't transfer well to new data</h3>
+<ul>
+<li>Your training data may not be diverse enough</li>
+<li>Include images from different conditions in training</li>
+<li>Try fine-tuning a pre-trained model instead of training from scratch</li>
+</ul>
+<hr />
+<h2>General AI Troubleshooting</h2>
+<h3>Results look plausible but are subtly wrong</h3>
+<ul>
+<li>Always validate against manual annotation on a subset</li>
+<li>Check edge cases: very large objects, very small objects, objects at image borders</li>
+<li>Examine the probability/confidence maps if available</li>
+</ul>
+<h3>Model works on some images but not others</h3>
+<ul>
+<li>Check for differences in intensity, contrast, resolution between images</li>
+<li>Pre-process (normalize, background subtract) before applying the model</li>
+<li>Consider training on your specific data or fine-tuning</li>
+</ul>
+<h3>Where to ask for help</h3>
+<ul>
+<li><strong>Image.sc Forum:</strong> <a href="https://forum.image.sc">https://forum.image.sc</a> — the best place for bioimage analysis questions</li>
+<li><strong>GitHub Issues:</strong> for specific tool bugs</li>
+<li><strong>Your local bioimage analysis core</strong> — many institutions have dedicated support</li>
+</ul>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

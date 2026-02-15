@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 05 - Cell Tracking with TrackMate + StarDist</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>Lab 05 — Cell Tracking with TrackMate + StarDist</h1>
+<p><a href="../../search.html?tag=lab" class="tag">#lab</a> <a href="../../search.html?tag=tracking" class="tag">#tracking</a> <a href="../../search.html?tag=trackmate" class="tag">#trackmate</a> <a href="../../search.html?tag=stardist" class="tag">#stardist</a> <a href="../../search.html?tag=hands-on" class="tag">#hands-on</a></p>
+<hr />
+<h2>Objective</h2>
+<p>Track nuclei over time in a time-lapse movie using TrackMate with StarDist as the detector, comparing against the classical LoG detector.</p>
+<p><strong>Time:</strong> ~45 minutes<br />
+<strong>Prerequisites:</strong> Fiji with StarDist and TrackMate-StarDist plugins installed</p>
+<hr />
+<h2>Sample Data</h2>
+<p>If you don't have a time-lapse, use the TrackMate sample:</p>
+<pre><code>File → Open Samples → Tracking Challenge (FakeTracks)
+</code></pre>
+<p>Or download a real dataset from the Cell Tracking Challenge:<br />
+🔗 <a href="http://celltrackingchallenge.net/2d-datasets/">http://celltrackingchallenge.net/2d-datasets/</a></p>
+<hr />
+<h2>Part A: Classical Tracking (LoG Detector)</h2>
+<ol>
+<li>Open your time-lapse</li>
+<li><strong>Plugins → Tracking → TrackMate</strong></li>
+<li>Detector: <strong>LoG detector</strong></li>
+<li>Set estimated blob diameter and threshold</li>
+<li>Click <strong>Preview</strong> on a frame → adjust until detection looks reasonable</li>
+<li><strong>Next</strong> → detect all frames</li>
+<li>Tracker: <strong>Simple LAP tracker</strong></li>
+<li>Set linking distance (~15 px), gap closing distance (~15 px), max gap (2 frames)</li>
+<li>Run tracking</li>
+<li>Note: number of tracks, tracking errors, broken tracks</li>
+</ol>
+<p><strong>Record:</strong> Total spots detected, total tracks, time to configure.</p>
+<hr />
+<h2>Part B: AI-Enhanced Tracking (StarDist Detector)</h2>
+<ol>
+<li>Open the same time-lapse (start fresh)</li>
+<li><strong>Plugins → Tracking → TrackMate</strong></li>
+<li>Detector: <strong>StarDist detector</strong></li>
+<li>Select model: "Versatile (fluorescent nuclei)"</li>
+<li>Keep default parameters (or adjust probability threshold)</li>
+<li><strong>Preview</strong> → examine detection quality</li>
+<li><strong>Next</strong> → detect all frames</li>
+<li>Tracker: <strong>Simple LAP tracker</strong> (same settings as Part A)</li>
+<li>Run tracking</li>
+<li>Compare: number of tracks, tracking errors, broken tracks</li>
+</ol>
+<hr />
+<h2>Part C: Compare Results</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>LoG Detector</th>
+<th>StarDist Detector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spots per frame (avg)</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>False detections per frame</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Total tracks</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Broken tracks needing repair</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Time to configure</td>
+<td>___</td>
+<td>___</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Part D: Analyze Tracks</h2>
+<p>Once you have good tracks, explore TrackMate's analysis:</p>
+<ol>
+<li>In the TrackMate display, go to <strong>Analysis</strong></li>
+<li>Examine:</li>
+<li><strong>Track displacement</strong> — how far cells moved</li>
+<li><strong>Track velocity</strong> — speed over time</li>
+<li><strong>Directionality</strong> — are cells migrating in a specific direction?</li>
+<li>Export tracks to CSV: <strong>Analysis → Export tracks to CSV</strong></li>
+</ol>
+<hr />
+<h2>Part E: Visualize</h2>
+<p>Use TrackMate's visualization options:<br />
+- Color tracks by <strong>velocity</strong> or <strong>displacement</strong><br />
+- Show <strong>track trails</strong> (display recent positions)<br />
+- Export as overlay movie</p>
+<hr />
+<h2>Takeaways</h2>
+<ul>
+<li>StarDist as a TrackMate detector dramatically reduces detection errors</li>
+<li>Better per-frame detection leads to better tracking (fewer broken tracks)</li>
+<li>The combination requires minimal configuration compared to tuning LoG parameters</li>
+<li>TrackMate's analysis tools work identically regardless of which detector was used</li>
+</ul>
+<hr />
+<p><strong>Next Lab:</strong> <a href="lab-06-building-a-python-pipeline-with-pyimagej.html" class="internal-link">Lab 06 - Building a Python Pipeline with PyImageJ</a></p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15 - Building Custom Analysis Pipelines</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Course Map</h3>
+            <ul><li><a href="../../AI-driven-bootcamp-ImageJ.html">Home</a></li><li class="folder"><span class="folder-name">course</span><ul><li class="folder"><span class="folder-name">00-Start-Here</span><ul><li><a href="../../course/00-start-here/course-home.html">≡Course Home</a></li></ul></li><li class="folder"><span class="folder-name">01-Foundations</span><ul><li><a href="../../course/01-foundations/01-the-classical-toolkit-what-you-already-know.html">01 - The Classical Toolkit (What You Already Know)</a></li><li><a href="../../course/01-foundations/02-why-classical-methods-hit-a-wall.html">02 - Why Classical Methods Hit a Wall</a></li><li><a href="../../course/01-foundations/03-deep-learning-in-10-minutes-no-math-required.html">03 - Deep Learning in 10 Minutes (No Math Required)</a></li></ul></li><li class="folder"><span class="folder-name">02-The-AI-Revolution</span><ul><li><a href="../../course/02-the-ai-revolution/04-the-new-fiji-update-sites-and-ai-plugins.html">04 - The New Fiji - Update Sites and AI Plugins</a></li><li><a href="../../course/02-the-ai-revolution/05-stardist-nuclei-segmentation-that-actually-works.html">05 - StarDist - Nuclei Segmentation That Actually Works</a></li><li><a href="../../course/02-the-ai-revolution/06-cellpose-the-universal-cell-segmenter.html">06 - Cellpose - The Universal Cell Segmenter</a></li><li><a href="../../course/02-the-ai-revolution/07-care-and-csbdeep-ai-image-restoration.html">07 - CARE and CSBDeep - AI Image Restoration</a></li><li><a href="../../course/02-the-ai-revolution/08-deepimagej-and-the-bioimage-model-zoo.html">08 - DeepImageJ and the BioImage Model Zoo</a></li></ul></li><li class="folder"><span class="folder-name">03-Core-Tools</span><ul><li><a href="../../course/03-core-tools/09-trackmate-with-ai-detectors.html">09 - TrackMate with AI Detectors</a></li><li><a href="../../course/03-core-tools/10-clij-gpu-accelerated-processing.html">10 - CLIJ - GPU-Accelerated Processing</a></li><li><a href="../../course/03-core-tools/11-labkit-interactive-machine-learning-in-fiji.html">11 - LabKit - Interactive Machine Learning in Fiji</a></li></ul></li><li class="folder"><span class="folder-name">04-Hands-On-Labs</span><ul><li><a href="../../course/04-hands-on-labs/lab-01-stardist-nuclei-counting.html">Lab 01 - StarDist Nuclei Counting</a></li><li><a href="../../course/04-hands-on-labs/lab-02-cellpose-cell-segmentation.html">Lab 02 - Cellpose Cell Segmentation</a></li><li><a href="../../course/04-hands-on-labs/lab-03-denoising-with-care.html">Lab 03 - Denoising with CARE</a></li><li><a href="../../course/04-hands-on-labs/lab-04-bioimage-model-zoo-in-deepimagej.html">Lab 04 - BioImage Model Zoo in DeepImageJ</a></li><li><a href="../../course/04-hands-on-labs/lab-05-cell-tracking-with-trackmate-stardist.html">Lab 05 - Cell Tracking with TrackMate + StarDist</a></li><li><a href="../../course/04-hands-on-labs/lab-06-building-a-python-pipeline-with-pyimagej.html">Lab 06 - Building a Python Pipeline with PyImageJ</a></li></ul></li><li class="folder"><span class="folder-name">05-Advanced-Pipelines</span><ul><li><a href="../../course/05-advanced-pipelines/12-pyimagej-fiji-meets-python.html">12 - PyImageJ - Fiji Meets Python</a></li><li><a href="../../course/05-advanced-pipelines/13-zerocostdl4mic-train-models-for-free.html">13 - ZeroCostDL4Mic - Train Models for Free</a></li><li><a href="../../course/05-advanced-pipelines/14-micro-sam-segment-anything-for-microscopy.html">14 - Micro-SAM - Segment Anything for Microscopy</a></li><li><a href="../../course/05-advanced-pipelines/15-building-custom-analysis-pipelines.html">15 - Building Custom Analysis Pipelines</a></li></ul></li><li class="folder"><span class="folder-name">06-Resources</span><ul><li><a href="../../course/06-resources/cheat-sheet-old-way-vs-new-way.html">Cheat Sheet - Old Way vs New Way</a></li><li><a href="../../course/06-resources/curated-video-tutorials.html">Curated Video Tutorials</a></li><li><a href="../../course/06-resources/glossary.html">Glossary</a></li><li><a href="../../course/06-resources/tool-installation-guide.html">Tool Installation Guide</a></li><li><a href="../../course/06-resources/troubleshooting-faq.html">Troubleshooting FAQ</a></li><li><a href="../../course/06-resources/useful-links-and-downloads.html">Useful Links and Downloads</a></li></ul></li><li><a href="../../course/readme.html">README</a></li></ul></li></ul>
+        </nav>
+        <main class="content">
+            <h1>15 - Building Custom Analysis Pipelines</h1>
+<p><a href="../../search.html?tag=pipeline" class="tag">#pipeline</a> <a href="../../search.html?tag=advanced" class="tag">#advanced</a> <a href="../../search.html?tag=workflow" class="tag">#workflow</a> <a href="../../search.html?tag=automation" class="tag">#automation</a></p>
+<hr />
+<h2>Overview</h2>
+<p>With all the tools covered in this course, you can now build custom analysis pipelines tailored to your specific research questions. This module provides templates and decision frameworks for designing your own workflows.</p>
+<hr />
+<h2>Pipeline Design Decision Tree</h2>
+<pre><code>START: What do you need to do?
+│
+├─ Segment objects?
+│  ├─ Round nuclei → StarDist (pre-trained, try first)
+│  ├─ Irregular cells → Cellpose (pre-trained, try first)
+│  ├─ Specific structures (EM organelles, etc.) → BioImage Model Zoo
+│  ├─ Texture-based classification → LabKit
+│  └─ Novel objects, nothing works → Micro-SAM for annotation → Train custom model
+│
+├─ Denoise / restore images?
+│  ├─ Have paired noisy/clean data → CARE
+│  ├─ Only noisy data → Noise2Void
+│  └─ Quick classical denoising → Median filter or CLIJ2
+│
+├─ Track objects over time?
+│  └─ TrackMate + StarDist or Cellpose detector
+│
+├─ Process large/3D datasets?
+│  └─ CLIJ2 for GPU acceleration
+│
+└─ Batch process many images?
+   ├─ Simple pipeline → Fiji Macro with AI plugins
+   └─ Complex pipeline → Python script with PyImageJ / Cellpose / scikit-image
+</code></pre>
+<hr />
+<h2>Template: Fluorescent Nuclei Analysis</h2>
+<pre><code>Pipeline: Count nuclei, measure intensity, export to CSV
+
+1. LOAD:       Open image (Fiji or Python)
+2. PRE-PROCESS: CLIJ2 background subtraction (optional)
+3. SEGMENT:    StarDist &quot;Versatile (fluorescent nuclei)&quot;
+4. MEASURE:    Area, mean intensity, shape descriptors
+5. EXPORT:     CSV + labeled mask image
+6. ANALYZE:    Statistical analysis in R/Python
+</code></pre>
+<h2>Template: Cell Morphology Analysis</h2>
+<pre><code>Pipeline: Segment cells, measure morphology, classify shapes
+
+1. LOAD:       Open multi-channel image
+2. SEGMENT NUCLEI:  StarDist on DAPI channel
+3. SEGMENT CELLS:   Cellpose (cyto3) on cytoplasm channel
+4. ASSOCIATE:       Match each nucleus with its cell
+5. MEASURE:         Area, eccentricity, solidity, aspect ratio
+6. CLASSIFY:        Cluster cells by morphology (Python/scikit-learn)
+7. EXPORT:          Measurements + classifications
+</code></pre>
+<h2>Template: Time-Lapse Cell Migration</h2>
+<pre><code>Pipeline: Track cells, measure migration parameters
+
+1. LOAD:       Open time-lapse stack
+2. PRE-PROCESS: CARE denoising (if noisy)
+3. DETECT:     TrackMate + StarDist detector
+4. TRACK:      Simple LAP tracker
+5. ANALYZE:    Speed, directionality, displacement
+6. EXPORT:     Track data to CSV
+7. VISUALIZE:  Migration plots in Python/R
+</code></pre>
+<h2>Template: EM Organelle Quantification</h2>
+<pre><code>Pipeline: Segment organelles in electron microscopy
+
+1. LOAD:       Open EM image/stack
+2. FIND MODEL: Browse BioImage Model Zoo for matching model
+3. SEGMENT:    DeepImageJ with pre-trained model
+4. POST-PROCESS: Clean up with morphological operations
+5. MEASURE:    Organelle count, area, distribution
+6. EXPORT:     Measurements + overlay images
+</code></pre>
+<hr />
+<h2>Best Practices for Reproducible Pipelines</h2>
+<ol>
+<li><strong>Document everything:</strong> Save your scripts, parameters, and model versions</li>
+<li><strong>Version control:</strong> Use Git for your analysis scripts</li>
+<li><strong>Record model provenance:</strong> Note which model, which version, which parameters</li>
+<li><strong>Validate on a subset:</strong> Always check AI output against manual annotation</li>
+<li><strong>Save intermediate results:</strong> Keep masks and intermediate images, not just final numbers</li>
+<li><strong>Automate end-to-end:</strong> If you're running it more than once, script it</li>
+</ol>
+<hr />
+<h2>Sharing Your Pipeline</h2>
+<p>Consider packaging your pipeline for others:<br />
+- <strong>Fiji macro:</strong> Share as .ijm file<br />
+- <strong>Python script:</strong> Share as .py file with requirements.txt<br />
+- <strong>Jupyter notebook:</strong> Share as .ipynb with documentation<br />
+- <strong>Docker container:</strong> For maximum reproducibility<br />
+- <strong>napari plugin:</strong> If building interactive tools</p>
+        </main>
+    </div>
+    <script>
+        // Simple local storage persistence for checkboxes
+        function saveFromCheckbox(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) {
+                    cb.checked = (saved === 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
